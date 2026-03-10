@@ -1,0 +1,305 @@
+#!/bin/bash
+################################################################################
+# MariaDB Thread Spike Monitor & Auto-Recovery Script
+# 
+# Problem: MariaDB threads suddenly spike to 5k-10k+ causing system overload
+# Solution: Automated monitoring and intelligent recovery mechanism
+#
+# Author: Digital Warrior (dw-runner)
+# Repository: https://github.com/dw-runner/mariadb-guardian
+# Email: security@genesis-link.org
+# License: AGPL-3.0
+#
+# Security Researcher Signature: 🛡️ الثغرة المحاربة
+################################################################################
+
+set -euo pipefail
+
+# Configuration
+readonly MAX_THREADS=4000
+readonly NORMAL_THREADS=500
+readonly CHECK_INTERVAL=30
+readonly LOG_FILE="/var/log/mariadb-guardian.log"
+readonly SLAVES=("slave1.example.com" "slave2.example.com" "slave3.example.com")
+readonly MYSQL_USER="monitor"
+readonly MYSQL_PASS="SecurePassword123!"
+
+# Colors for output
+readonly RED='\033[0;31m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[1;33m'
+readonly NC='\033[0m' # No Color
+
+################################################################################
+# Logging Function
+################################################################################
+log() {
+    echo -e "[$(date +'%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
+}
+
+log_error() {
+    echo -e "${RED}[ERROR]${NC} [$(date +'%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
+}
+
+log_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} [$(date +'%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
+}
+
+log_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} [$(date +'%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
+}
+
+################################################################################
+# Get Current Thread Count
+################################################################################
+get_thread_count() {
+    mysql -u"$MYSQL_USER" -p"$MYSQL_PASS" -e "SHOW STATUS LIKE 'Threads_connected';" \
+        | awk 'NR==2 {print $2}'
+}
+
+################################################################################
+# Check Replication Status
+################################################################################
+check_replication() {
+    local slave_host=$1
+    ssh "$slave_host" "mysql -u${MYSQL_USER} -p${MYSQL_PASS} -e 'SHOW SLAVE STATUS\G'" \
+        | grep -E "Slave_IO_Running|Slave_SQL_Running|Seconds_Behind_Master"
+}
+
+################################################################################
+# Restart Slave (Soft Recovery)
+################################################################################
+restart_slave() {
+    local slave_host=$1
+    
+    log "Restarting replication on ${slave_host}..."
+    
+    ssh "$slave_host" "mysql -u${MYSQL_USER} -p${MYSQL_PASS} -e 'STOP SLAVE;'"
+    sleep 5
+    ssh "$slave_host" "mysql -u${MYSQL_USER} -p${MYSQL_PASS} -e 'START SLAVE;'"
+    
+    log_success "Replication restarted on ${slave_host}"
+}
+
+################################################################################
+# Identify Problematic Slave
+################################################################################
+identify_problematic_slave() {
+    log "Analyzing replication lag across all slaves..."
+    
+    local max_lag=0
+    local problematic_slave=""
+    
+    for slave in "${SLAVES[@]}"; do
+        local lag=$(ssh "$slave" "mysql -u${MYSQL_USER} -p${MYSQL_PASS} -e 'SHOW SLAVE STATUS\G'" \
+            | grep "Seconds_Behind_Master" | awk '{print $2}')
+        
+        log "Slave ${slave}: ${lag}s behind master"
+        
+        if [ "$lag" -gt "$max_lag" ]; then
+            max_lag=$lag
+            problematic_slave=$slave
+        fi
+    done
+    
+    echo "$problematic_slave"
+}
+
+################################################################################
+# Automated Recovery Procedure
+################################################################################
+automated_recovery() {
+    local thread_count=$1
+    
+    log_warning "Thread count ${thread_count} exceeded threshold ${MAX_THREADS}"
+    
+    # Step 1: Try soft recovery (restart lagging slave)
+    local problem_slave=$(identify_problematic_slave)
+    
+    if [ -n "$problem_slave" ]; then
+        log "Attempting soft recovery on ${problem_slave}"
+        restart_slave "$problem_slave"
+        sleep 60
+        
+        local new_count=$(get_thread_count)
+        if [ "$new_count" -lt "$NORMAL_THREADS" ]; then
+            log_success "Soft recovery successful! Threads reduced to ${new_count}"
+            return 0
+        fi
+    fi
+    
+    # Step 2: Restart all slaves sequentially
+    log_warning "Soft recovery failed. Restarting all slaves..."
+    for slave in "${SLAVES[@]}"; do
+        restart_slave "$slave"
+        sleep 30
+    done
+    
+    sleep 60
+    local new_count=$(get_thread_count)
+    
+    if [ "$new_count" -lt "$NORMAL_THREADS" ]; then
+        log_success "All-slave restart successful! Threads: ${new_count}"
+        return 0
+    fi
+    
+    # Step 3: Last resort - restart master (with alert)
+    log_error "Critical: All recovery attempts failed. Master restart required!"
+    log_error "Current threads: ${new_count}. Manual intervention needed!"
+    
+    # Send alert (email, Slack, etc.)
+    send_critical_alert "$new_count"
+    
+    return 1
+}
+
+################################################################################
+# Send Critical Alert
+################################################################################
+send_critical_alert() {
+    local thread_count=$1
+    
+    # Email alert
+    echo "CRITICAL: MariaDB threads at ${thread_count}. Immediate action required!" \
+        | mail -s "🚨 MariaDB Emergency" security@genesis-link.org
+    
+    # Slack webhook (optional)
+    # curl -X POST -H 'Content-type: application/json' \
+    #     --data '{"text":"🚨 MariaDB thread spike: '"$thread_count"'"}' \
+    #     YOUR_SLACK_WEBHOOK_URL
+}
+
+################################################################################
+# Main Monitoring Loop
+################################################################################
+monitor_loop() {
+    log "🛡️ MariaDB Guardian started - Monitoring thread count every ${CHECK_INTERVAL}s"
+    
+    while true; do
+        local current_threads=$(get_thread_count)
+        
+        if [ "$current_threads" -gt "$MAX_THREADS" ]; then
+            log_warning "Alert! Thread count: ${current_threads}"
+            automated_recovery "$current_threads"
+        else
+            log "Status OK - Threads: ${current_threads}"
+        fi
+        
+        sleep "$CHECK_INTERVAL"
+    done
+}
+
+################################################################################
+# Diagnostic Report
+################################################################################
+generate_diagnostic_report() {
+    log "Generating diagnostic report..."
+    
+    {
+        echo "=== MariaDB Diagnostic Report ==="
+        echo "Generated: $(date)"
+        echo ""
+        echo "=== Thread Count ==="
+        mysql -u"$MYSQL_USER" -p"$MYSQL_PASS" -e "SHOW STATUS LIKE 'Threads%';"
+        echo ""
+        echo "=== Process List (Top 20) ==="
+        mysql -u"$MYSQL_USER" -p"$MYSQL_PASS" -e "SHOW FULL PROCESSLIST;" | head -20
+        echo ""
+        echo "=== Replication Status ==="
+        for slave in "${SLAVES[@]}"; do
+            echo "--- ${slave} ---"
+            check_replication "$slave"
+        done
+        echo ""
+        echo "=== InnoDB Status ==="
+        mysql -u"$MYSQL_USER" -p"$MYSQL_PASS" -e "SHOW ENGINE INNODB STATUS\G" | head -100
+    } > "/tmp/mariadb_diagnostic_$(date +%Y%m%d_%H%M%S).log"
+    
+    log_success "Diagnostic report saved"
+}
+
+################################################################################
+# Configuration Recommendations
+################################################################################
+show_recommendations() {
+    cat << 'EOF'
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    🛡️ MariaDB Configuration Recommendations                  ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Add these to your /etc/mysql/my.cnf:
+
+[mysqld]
+# Connection & Thread Management
+max_connections = 1000
+thread_cache_size = 256
+table_open_cache = 4000
+max_connect_errors = 100000
+
+# Replication Optimization
+slave_parallel_threads = 4
+slave_parallel_mode = conservative
+sync_binlog = 1
+binlog_cache_size = 1M
+
+# InnoDB Tuning (750GB DB)
+innodb_buffer_pool_size = 512G    # 70% of RAM if you have 750GB+
+innodb_log_file_size = 2G
+innodb_flush_log_at_trx_commit = 2
+innodb_flush_method = O_DIRECT
+innodb_io_capacity = 2000
+innodb_io_capacity_max = 4000
+
+# Query Cache (Disabled in MariaDB 10.2+, use ProxySQL)
+query_cache_type = 0
+
+# Slow Query Logging
+slow_query_log = 1
+long_query_time = 2
+log_queries_not_using_indexes = 1
+
+After changes: sudo systemctl restart mysql
+
+EOF
+}
+
+################################################################################
+# Main Entry Point
+################################################################################
+main() {
+    case "${1:-monitor}" in
+        monitor)
+            monitor_loop
+            ;;
+        check)
+            echo "Current threads: $(get_thread_count)"
+            ;;
+        diagnose)
+            generate_diagnostic_report
+            ;;
+        recover)
+            automated_recovery "$(get_thread_count)"
+            ;;
+        recommendations)
+            show_recommendations
+            ;;
+        *)
+            echo "Usage: $0 {monitor|check|diagnose|recover|recommendations}"
+            echo ""
+            echo "  monitor         - Start continuous monitoring (default)"
+            echo "  check           - Check current thread count"
+            echo "  diagnose        - Generate diagnostic report"
+            echo "  recover         - Force recovery procedure"
+            echo "  recommendations - Show configuration recommendations"
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"
+
+################################################################################
+# Security Researcher: Digital Warrior (dw-runner)
+# 🛡️ الثغرة المحاربة
+################################################################################

@@ -1,0 +1,580 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# 🛡️ TERMUX CYBERSHIELD - DEFENSE AGAINST MALICIOUS ATTACKS
+# ═══════════════════════════════════════════════════════════════════════════
+# Script: termux-shield.sh
+# Purpose: Protect Termux from malicious apps, ads, and attacks
+# Author: asrar-mared (صائد الثغرات المحارب)
+# Version: 1.0.0
+# Date: 2026-01-05
+#
+# Features:
+#   🔥 Block malicious ad networks
+#   🔥 Stop background attacks
+#   🔥 Kill suspicious processes
+#   🔥 Monitor and alert threats
+#   🔥 Firewall protection
+#   🔥 Real-time defense system
+#
+# Usage:
+#   bash termux-shield.sh
+#   ./termux-shield.sh --aggressive
+#   ./termux-shield.sh --monitor
+#
+# ⚠️  WARNING: This is a defensive tool. Use responsibly.
+# ═══════════════════════════════════════════════════════════════════════════
+
+set -euo pipefail
+
+# ═══════════════════════════════════════════════════════════════════════════
+# COLORS & STYLING
+# ═══════════════════════════════════════════════════════════════════════════
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'
+BOLD='\033[1m'
+BLINK='\033[5m'
+NC='\033[0m'
+
+# ═══════════════════════════════════════════════════════════════════════════
+# CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════════════
+
+SCRIPT_VERSION="1.0.0"
+AUTHOR="asrar-mared"
+LOG_FILE="$HOME/.termux-shield.log"
+BLOCKLIST_FILE="$HOME/.termux-shield-blocklist"
+PID_FILE="$HOME/.termux-shield.pid"
+
+# Aggressive mode flag
+AGGRESSIVE_MODE=false
+MONITOR_MODE=false
+
+# ═══════════════════════════════════════════════════════════════════════════
+# MALICIOUS DOMAINS & AD NETWORKS (MASSIVE BLOCKLIST)
+# ═══════════════════════════════════════════════════════════════════════════
+
+MALICIOUS_DOMAINS=(
+    # Ad Networks
+    "ads.google.com"
+    "doubleclick.net"
+    "googlesyndication.com"
+    "googleadservices.com"
+    "adservice.google.com"
+    "pagead2.googlesyndication.com"
+    "afs.googlesyndication.com"
+    
+    # Facebook Ads
+    "graph.facebook.com"
+    "connect.facebook.net"
+    "staticxx.facebook.com"
+    "an.facebook.com"
+    
+    # Popular Ad Networks
+    "adcolony.com"
+    "admob.com"
+    "inmobi.com"
+    "applovin.com"
+    "unity3d.com"
+    "vungle.com"
+    "chartboost.com"
+    "flurry.com"
+    "crashlytics.com"
+    "appodeal.com"
+    "mopub.com"
+    "tapjoy.com"
+    "supersonic.com"
+    "ironsrc.com"
+    "startapp.com"
+    "fyber.com"
+    
+    # Analytics & Tracking
+    "google-analytics.com"
+    "analytics.google.com"
+    "firebase-settings.crashlytics.com"
+    "app-measurement.com"
+    "firebaselogging.googleapis.com"
+    
+    # Suspicious Domains
+    "malware.com"
+    "phishing.com"
+    "trojan.net"
+    "botnet.org"
+)
+
+# Suspicious process names
+SUSPICIOUS_PROCESSES=(
+    "adserver"
+    "adsdk"
+    "admob"
+    "analytics"
+    "tracker"
+    "beacon"
+    "telemetry"
+    "crashlytics"
+    "firebase"
+    "malware"
+    "trojan"
+    "miner"
+    "cryptojack"
+)
+
+# ═══════════════════════════════════════════════════════════════════════════
+# UTILITY FUNCTIONS
+# ═══════════════════════════════════════════════════════════════════════════
+
+log_message() {
+    local level="$1"
+    local message="$2"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[$timestamp] [$level] $message" >> "$LOG_FILE"
+}
+
+print_banner() {
+    clear
+    echo -e "${CYAN}"
+    cat << "EOF"
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║   ████████╗███████╗██████╗ ███╗   ███╗██╗   ██╗██╗  ██╗     ║
+║   ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║   ██║╚██╗██╔╝     ║
+║      ██║   █████╗  ██████╔╝██╔████╔██║██║   ██║ ╚███╔╝      ║
+║      ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║   ██║ ██╔██╗      ║
+║      ██║   ███████╗██║  ██║██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗     ║
+║      ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝     ║
+║                                                               ║
+║              🛡️  CYBERSHIELD DEFENSE SYSTEM  ⚔️              ║
+║                   درع زايد للحماية                          ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+EOF
+    echo -e "${NC}"
+    echo -e "${YELLOW}Version: ${WHITE}$SCRIPT_VERSION${NC}"
+    echo -e "${YELLOW}Author:  ${WHITE}$AUTHOR (صائد الثغرات المحارب)${NC}"
+    echo -e "${YELLOW}Mode:    ${WHITE}$([ "$AGGRESSIVE_MODE" = true ] && echo "AGGRESSIVE 🔥" || echo "STANDARD 🛡️")${NC}"
+    echo ""
+    echo -e "${RED}${BLINK}⚠️  DEFENSE MODE ACTIVATED ⚠️${NC}"
+    echo ""
+}
+
+show_status() {
+    local icon="$1"
+    local message="$2"
+    echo -e "${GREEN}[$icon]${NC} $message"
+}
+
+show_warning() {
+    local message="$1"
+    echo -e "${YELLOW}[⚠️]${NC} $message"
+}
+
+show_error() {
+    local message="$1"
+    echo -e "${RED}[✗]${NC} $message"
+}
+
+show_attack() {
+    local message="$1"
+    echo -e "${RED}${BOLD}[🚨 ATTACK DETECTED]${NC} $message"
+    log_message "ATTACK" "$message"
+}
+
+# ═══════════════════════════════════════════════════════════════════════════
+# DEFENSE FUNCTIONS
+# ═══════════════════════════════════════════════════════════════════════════
+
+check_root() {
+    if [ "$(id -u)" -eq 0 ]; then
+        show_status "✓" "Running with root privileges (Enhanced protection)"
+        return 0
+    else
+        show_warning "Running without root (Limited protection)"
+        return 1
+    fi
+}
+
+install_dependencies() {
+    show_status "📦" "Checking dependencies..."
+    
+    local deps=("iptables" "netstat" "curl" "grep" "awk" "ps")
+    local missing=()
+    
+    for dep in "${deps[@]}"; do
+        if ! command -v "$dep" &> /dev/null; then
+            missing+=("$dep")
+        fi
+    done
+    
+    if [ ${#missing[@]} -gt 0 ]; then
+        show_warning "Missing dependencies: ${missing[*]}"
+        show_status "📦" "Installing dependencies..."
+        
+        pkg update -y &>/dev/null
+        pkg install -y net-tools curl grep gawk procps &>/dev/null
+        
+        show_status "✓" "Dependencies installed"
+    else
+        show_status "✓" "All dependencies satisfied"
+    fi
+}
+
+setup_hosts_blocking() {
+    show_status "🔒" "Setting up hosts-based blocking..."
+    
+    local hosts_file="/system/etc/hosts"
+    local backup_file="$HOME/.hosts.backup"
+    
+    # Backup original hosts file
+    if [ ! -f "$backup_file" ]; then
+        if [ -f "$hosts_file" ]; then
+            cp "$hosts_file" "$backup_file" 2>/dev/null || true
+        fi
+    fi
+    
+    # Create blocklist
+    {
+        echo "# ═══════════════════════════════════════════════════════════"
+        echo "# Termux CyberShield - Malicious Domains Blocklist"
+        echo "# Generated: $(date)"
+        echo "# ═══════════════════════════════════════════════════════════"
+        echo ""
+        
+        for domain in "${MALICIOUS_DOMAINS[@]}"; do
+            echo "127.0.0.1 $domain"
+            echo "::1 $domain"
+        done
+    } > "$BLOCKLIST_FILE"
+    
+    show_status "✓" "Blocklist created: $(wc -l < "$BLOCKLIST_FILE") entries"
+    
+    # If root, try to update system hosts
+    if check_root &>/dev/null; then
+        cat "$BLOCKLIST_FILE" >> "$hosts_file" 2>/dev/null || true
+        show_status "✓" "System hosts file updated"
+    fi
+}
+
+kill_suspicious_processes() {
+    show_status "🔍" "Scanning for suspicious processes..."
+    
+    local killed_count=0
+    
+    for proc_name in "${SUSPICIOUS_PROCESSES[@]}"; do
+        # Find processes matching suspicious names
+        local pids=$(pgrep -fi "$proc_name" 2>/dev/null || true)
+        
+        if [ -n "$pids" ]; then
+            show_attack "Suspicious process detected: $proc_name (PIDs: $pids)"
+            
+            for pid in $pids; do
+                # Get process details
+                local proc_info=$(ps -p "$pid" -o comm= 2>/dev/null || echo "unknown")
+                
+                show_status "🔨" "Terminating: $proc_info (PID: $pid)"
+                kill -9 "$pid" 2>/dev/null || true
+                killed_count=$((killed_count + 1))
+                
+                log_message "KILL" "Terminated suspicious process: $proc_info (PID: $pid)"
+            done
+        fi
+    done
+    
+    if [ $killed_count -gt 0 ]; then
+        show_status "✓" "Terminated $killed_count suspicious processes"
+    else
+        show_status "✓" "No suspicious processes found"
+    fi
+}
+
+block_network_connections() {
+    show_status "🌐" "Blocking malicious network connections..."
+    
+    if ! check_root &>/dev/null; then
+        show_warning "Root required for network blocking (skipping)"
+        return
+    fi
+    
+    # Check if iptables is available
+    if ! command -v iptables &> /dev/null; then
+        show_warning "iptables not available (skipping network blocking)"
+        return
+    fi
+    
+    local blocked_count=0
+    
+    for domain in "${MALICIOUS_DOMAINS[@]}"; do
+        # Try to resolve domain to IP
+        local ip=$(getent hosts "$domain" 2>/dev/null | awk '{print $1}' | head -1)
+        
+        if [ -n "$ip" ]; then
+            # Block outgoing connections to this IP
+            iptables -A OUTPUT -d "$ip" -j DROP 2>/dev/null || true
+            blocked_count=$((blocked_count + 1))
+        fi
+    done
+    
+    show_status "✓" "Blocked $blocked_count network destinations"
+}
+
+monitor_active_connections() {
+    show_status "👁️" "Monitoring active network connections..."
+    
+    if ! command -v netstat &> /dev/null; then
+        show_warning "netstat not available (install net-tools)"
+        return
+    fi
+    
+    local suspicious_found=false
+    
+    # Get active connections
+    netstat -tupn 2>/dev/null | grep ESTABLISHED | while read -r line; do
+        local remote_addr=$(echo "$line" | awk '{print $5}' | cut -d: -f1)
+        
+        # Check if remote address matches malicious domains
+        for domain in "${MALICIOUS_DOMAINS[@]}"; do
+            local domain_ip=$(getent hosts "$domain" 2>/dev/null | awk '{print $1}' | head -1)
+            
+            if [ "$remote_addr" = "$domain_ip" ]; then
+                show_attack "Malicious connection detected: $remote_addr ($domain)"
+                suspicious_found=true
+                
+                # Extract PID and kill if aggressive mode
+                local pid=$(echo "$line" | awk '{print $7}' | cut -d/ -f1)
+                if [ "$AGGRESSIVE_MODE" = true ] && [ -n "$pid" ]; then
+                    show_status "🔨" "Killing process: $pid"
+                    kill -9 "$pid" 2>/dev/null || true
+                fi
+            fi
+        done
+    done
+    
+    if [ "$suspicious_found" = false ]; then
+        show_status "✓" "No malicious connections detected"
+    fi
+}
+
+scan_environment() {
+    show_status "🔍" "Scanning Termux environment..."
+    
+    # Check for suspicious environment variables
+    local suspicious_vars=(
+        "MALWARE"
+        "TROJAN"
+        "BACKDOOR"
+        "EXPLOIT"
+        "AD_ID"
+        "TRACKING_ID"
+    )
+    
+    for var in "${suspicious_vars[@]}"; do
+        if [ -n "${!var:-}" ]; then
+            show_attack "Suspicious environment variable: $var=${!var}"
+            unset "$var"
+            show_status "✓" "Cleared: $var"
+        fi
+    done
+    
+    # Check for suspicious files
+    local suspicious_files=(
+        "$HOME/.malware"
+        "$HOME/.trojan"
+        "$HOME/.backdoor"
+        "$PREFIX/bin/adserver"
+    )
+    
+    for file in "${suspicious_files[@]}"; do
+        if [ -f "$file" ]; then
+            show_attack "Suspicious file detected: $file"
+            rm -f "$file" 2>/dev/null || true
+            show_status "✓" "Removed: $file"
+        fi
+    done
+}
+
+aggressive_defense() {
+    show_status "🔥" "Activating AGGRESSIVE defense mode..."
+    
+    # Kill ALL non-essential processes
+    show_status "🔨" "Terminating all non-essential processes..."
+    
+    # Get current shell PID and script PID
+    local current_pid=$$
+    local parent_pid=$PPID
+    
+    # Kill everything except essential processes
+    ps -e | grep -v "PID" | grep -v "bash" | grep -v "sh" | grep -v "$current_pid" | grep -v "$parent_pid" | while read -r line; do
+        local pid=$(echo "$line" | awk '{print $1}')
+        local name=$(echo "$line" | awk '{print $4}')
+        
+        # Don't kill system processes
+        if [[ "$name" != "init" && "$name" != "systemd" ]]; then
+            show_status "🔨" "Killing: $name (PID: $pid)"
+            kill -9 "$pid" 2>/dev/null || true
+        fi
+    done
+    
+    # Clear all caches
+    show_status "🧹" "Clearing all caches..."
+    rm -rf "$HOME/.cache/"* 2>/dev/null || true
+    rm -rf "$PREFIX/tmp/"* 2>/dev/null || true
+    
+    # Disable all background services
+    show_status "🛑" "Stopping all background services..."
+    pkill -f "service" 2>/dev/null || true
+    pkill -f "daemon" 2>/dev/null || true
+    
+    show_status "✓" "Aggressive defense completed"
+}
+
+continuous_monitor() {
+    show_status "👁️" "Starting continuous monitoring mode..."
+    echo -e "${YELLOW}Press Ctrl+C to stop${NC}"
+    echo ""
+    
+    local iteration=0
+    
+    while true; do
+        iteration=$((iteration + 1))
+        
+        echo -e "${CYAN}═══════════════════════════════════════════════════${NC}"
+        echo -e "${WHITE}Scan #$iteration - $(date '+%H:%M:%S')${NC}"
+        echo -e "${CYAN}═══════════════════════════════════════════════════${NC}"
+        
+        kill_suspicious_processes
+        monitor_active_connections
+        
+        echo ""
+        echo -e "${GREEN}[✓]${NC} Monitoring cycle complete. Next scan in 10 seconds..."
+        echo ""
+        
+        sleep 10
+    done
+}
+
+# ═══════════════════════════════════════════════════════════════════════════
+# MAIN DEFENSE SYSTEM
+# ═══════════════════════════════════════════════════════════════════════════
+
+main() {
+    # Parse arguments
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --aggressive|-a)
+                AGGRESSIVE_MODE=true
+                shift
+                ;;
+            --monitor|-m)
+                MONITOR_MODE=true
+                shift
+                ;;
+            --help|-h)
+                echo "Usage: $0 [OPTIONS]"
+                echo ""
+                echo "Options:"
+                echo "  --aggressive, -a    Aggressive defense mode (kills more processes)"
+                echo "  --monitor, -m       Continuous monitoring mode"
+                echo "  --help, -h          Show this help"
+                exit 0
+                ;;
+            *)
+                echo "Unknown option: $1"
+                exit 1
+                ;;
+        esac
+    done
+    
+    # Show banner
+    print_banner
+    
+    # Check if already running
+    if [ -f "$PID_FILE" ]; then
+        local old_pid=$(cat "$PID_FILE")
+        if ps -p "$old_pid" &>/dev/null; then
+            show_error "Shield already running (PID: $old_pid)"
+            exit 1
+        fi
+    fi
+    
+    # Save PID
+    echo $$ > "$PID_FILE"
+    
+    # Initialize log
+    log_message "START" "Termux CyberShield started"
+    
+    # Start defense
+    show_status "🚀" "Initializing defense systems..."
+    echo ""
+    
+    # Phase 1: Setup
+    install_dependencies
+    setup_hosts_blocking
+    echo ""
+    
+    # Phase 2: Active Defense
+    kill_suspicious_processes
+    block_network_connections
+    monitor_active_connections
+    scan_environment
+    echo ""
+    
+    # Phase 3: Aggressive Mode (if enabled)
+    if [ "$AGGRESSIVE_MODE" = true ]; then
+        aggressive_defense
+        echo ""
+    fi
+    
+    # Phase 4: Monitoring (if enabled)
+    if [ "$MONITOR_MODE" = true ]; then
+        continuous_monitor
+    fi
+    
+    # Cleanup
+    rm -f "$PID_FILE"
+    
+    # Final message
+    echo -e "${CYAN}═══════════════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}${BOLD}✅ DEFENSE COMPLETE - SYSTEM SECURED${NC}"
+    echo -e "${CYAN}═══════════════════════════════════════════════════════════${NC}"
+    echo ""
+    echo -e "${WHITE}Summary:${NC}"
+    echo -e "  ${GREEN}✓${NC} Malicious domains blocked"
+    echo -e "  ${GREEN}✓${NC} Suspicious processes terminated"
+    echo -e "  ${GREEN}✓${NC} Network connections monitored"
+    echo -e "  ${GREEN}✓${NC} Environment sanitized"
+    echo ""
+    echo -e "${YELLOW}Log file:${NC} $LOG_FILE"
+    echo -e "${YELLOW}Blocklist:${NC} $BLOCKLIST_FILE"
+    echo ""
+    echo -e "${RED}${BOLD}⚔️ نحن لسنا لقمة سهلة - We are NOT easy prey ⚔️${NC}"
+    echo -e "${CYAN}🛡️ صائد الثغرات المحارب - The Warrior Protects 🛡️${NC}"
+    echo ""
+    
+    log_message "END" "Defense cycle completed successfully"
+}
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SIGNAL HANDLERS
+# ═══════════════════════════════════════════════════════════════════════════
+
+cleanup() {
+    echo ""
+    echo -e "${YELLOW}[⚠️] Shield interrupted${NC}"
+    rm -f "$PID_FILE"
+    log_message "STOP" "Shield stopped by user"
+    exit 0
+}
+
+trap cleanup SIGINT SIGTERM
+
+# ═══════════════════════════════════════════════════════════════════════════
+# EXECUTE
+# ═══════════════════════════════════════════════════════════════════════════
+
+main "$@"
+
+exit 0

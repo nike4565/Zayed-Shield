@@ -89,3 +89,4 @@ threat_level.tmp
 suspicious_*.tmp
 *.asc
 *.sig
+docs-backup/

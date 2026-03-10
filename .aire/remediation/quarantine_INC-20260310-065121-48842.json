@@ -1,0 +1,29 @@
+{
+  "quarantine_id": "QUAR-20260217-001",
+  "timestamp": "2026-02-17T14:31:10.000Z",
+  "quarantine_actions": [
+    {
+      "action": "REMOVE_PACKAGE",
+      "package": "critical-lib",
+      "version": "1.0.0",
+      "status": "EXECUTED"
+    },
+    {
+      "action": "BLOCK_INSTALLATION",
+      "package": "critical-lib",
+      "blocked_versions": ["1.0.0"],
+      "status": "EXECUTED"
+    },
+    {
+      "action": "DISABLE_IMPORTS",
+      "package": "critical-lib",
+      "method": "Runtime blocking",
+      "status": "EXECUTED"
+    },
+    {
+      "action": "ISOLATE_NETWORK",
+      "isolation_level": "CRITICAL",
+      "status": "EXECUTED"
+    }
+  ]
+}

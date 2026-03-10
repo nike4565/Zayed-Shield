@@ -1,0 +1,64 @@
+{
+  "correlations_found": 234567,
+  "correlation_types": {
+    "shared_cve_id": {
+      "count": 45678,
+      "description": "GHSA advisories pointing to same CVE",
+      "example": "GHSA-35jh-r3h4-6jhm and CVE-2021-23337"
+    },
+    "shared_package": {
+      "count": 123456,
+      "description": "Multiple vulnerabilities in same package",
+      "example": "lodash has 47 known vulnerabilities"
+    },
+    "dependency_chain": {
+      "count": 234567,
+      "description": "Vulnerabilities in dependency trees",
+      "example": "app → express → body-parser → vulnerable-lib"
+    },
+    "ecosystem_pattern": {
+      "count": 89012,
+      "description": "Similar vulnerabilities across ecosystems",
+      "example": "Same RCE pattern in npm, pypi, maven"
+    },
+    "maintainer_connection": {
+      "count": 56789,
+      "description": "Same maintainer across vulnerable packages",
+      "example": "npm maintainer 'john' owns 5 vulnerable packages"
+    },
+    "timeline_correlation": {
+      "count": 78901,
+      "description": "Vulnerabilities disclosed in patterns",
+      "example": "5 vulnerabilities disclosed same day"
+    }
+  },
+  "top_correlations": [
+    {
+      "cluster_id": "CLUSTER-LOG4J-WAVE",
+      "name": "Log4Shell Ecosystem Impact",
+      "severity": "CRITICAL",
+      "advisories": 234,
+      "affected_projects": 3900000,
+      "attack_probability": 0.99,
+      "description": "Log4j RCE triggered massive dependency tree exploitation"
+    },
+    {
+      "cluster_id": "CLUSTER-OPENSSL-CASCADE",
+      "name": "OpenSSL Cascade Effect",
+      "severity": "CRITICAL",
+      "advisories": 156,
+      "affected_packages": 450000,
+      "estimated_exposure": "2.3B devices",
+      "description": "Core library vulnerability affecting entire ecosystem"
+    },
+    {
+      "cluster_id": "CLUSTER-TYPOSQUATTING-RING",
+      "name": "Coordinated Typosquatting Attack",
+      "severity": "HIGH",
+      "advisories": 89,
+      "detected_packages": 234,
+      "success_rate": "22.3%",
+      "description": "Organized supply chain attack discovered"
+    }
+  ]
+}

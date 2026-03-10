@@ -1,287 +1,119 @@
-# 🔐 درع زايد🇦🇪 - هيكل المشروع
-
-```
-asrar-mared/
+zayed-shield/
 │
-├── 📚 docs/                           # الوثائق والشروحات
-│   ├── 📖 installation/               # دليل التثبيت
-│   │   ├── quick-start.md            # البداية السريعة
-│   │   ├── requirements.md           # المتطلبات
-│   │   └── troubleshooting.md        # حل المشاكل
+├── docs/                         # الوثائق الرسمية
+│   ├── architecture/             # تصميم النظام
+│   │   ├── system-overview.md
+│   │   ├── threat-model.md
+│   │   └── data-flow.md
 │   │
-│   ├── 📝 tutorials/                  # الشروحات التعليمية
-│   │   ├── beginner/                 # مستوى مبتدئ
-│   │   ├── intermediate/             # مستوى متوسط
-│   │   └── advanced/                 # مستوى متقدم
+│   ├── installation/             # دليل التثبيت
+│   │   ├── quick-start.md
+│   │   ├── requirements.md
+│   │   └── deployment-guide.md
 │   │
-│   ├── 📋 references/                 # المراجع والمصادر
-│   │   ├── commands.md               # قائمة الأوامر
-│   │   ├── tools-list.md             # قائمة الأدوات
-│   │   └── glossary.md               # المصطلحات
+│   ├── user-guide/               # دليل المستخدم
+│   │   ├── dashboard.md
+│   │   ├── monitoring.md
+│   │   └── reporting.md
 │   │
-│   ├── 🔌 api-docs/                   # وثائق API
-│   │   ├── endpoints.md              # نقاط الوصول
-│   │   └── authentication.md        # المصادقة
-│   │
-│   └── 📅 changelog/                  # سجل التغييرات
-│       ├── v1.0.md                   # الإصدار 1.0
-│       └── v1.1.md                   # الإصدار 1.1
+│   └── development/              # دليل المطورين
+│       ├── contributing.md
+│       ├── coding-standards.md
+│       └── api-reference.md
 │
-├── 🛠️ tools/                          # الأدوات الأمنية
-│   ├── 🌐 network-security/          # أمان الشبكات
-│   │   ├── port-scanner.py          # فاحص المنافذ
-│   │   ├── network-mapper.sh        # خريطة الشبكة
-│   │   ├── traffic-analyzer.py      # محلل حركة البيانات
-│   │   └── wifi-tools/              # أدوات الواي فاي
+├── src/                          # الكود الرئيسي
+│   ├── core/                     # النواة الأساسية للنظام
+│   │   ├── engine.py
+│   │   ├── scheduler.py
+│   │   └── config_manager.py
 │   │
-│   ├── 🌍 web-security/              # أمان الويب
-│   │   ├── sql-injection/           # حقن SQL
-│   │   ├── xss-scanner/             # فاحص XSS
-│   │   ├── directory-bruteforce/    # كسر الدليل
-│   │   └── web-crawler.py           # زاحف الويب
+│   ├── modules/                  # وحدات النظام
+│   │   ├── network_monitor/      
+│   │   ├── vulnerability_scan/
+│   │   ├── threat_detection/
+│   │   └── incident_response/
 │   │
-│   ├── 🔍 forensics/                 # التحليل الجنائي
-│   │   ├── file-analyzer.py         # محلل الملفات
-│   │   ├── memory-dump/             # تفريغ الذاكرة
-│   │   ├── log-parser.py            # محلل السجلات
-│   │   └── metadata-extractor/      # استخراج البيانات الوصفية
+│   ├── integrations/             # تكامل الأنظمة
+│   │   ├── github/
+│   │   ├── slack/
+│   │   ├── email/
+│   │   └── webhook/
 │   │
-│   ├── 🔐 encryption/               # التشفير
-│   │   ├── hash-generator.py        # مولد الهاش
-│   │   ├── cipher-tools/            # أدوات التشفير
-│   │   ├── key-generator.py         # مولد المفاتيح
-│   │   └── steganography/           # إخفاء البيانات
-│   │
-│   ├── 📊 monitoring/               # المراقبة
-│   │   ├── system-monitor.py        # مراقب النظام
-│   │   ├── network-sniffer.py       # التقاط حزم الشبكة
-│   │   ├── intrusion-detector/      # كاشف التسلل
-│   │   └── log-monitor.sh           # مراقب السجلات
-│   │
-│   ├── 🎯 vulnerability-assessment/  # تقييم الثغرات
-│   │   ├── vuln-scanner.py          # فاحص الثغرات
-│   │   ├── cve-checker/             # فاحص CVE
-│   │   ├── config-auditor.py        # مدقق الإعدادات
-│   │   └── compliance-checker/      # فاحص الامتثال
-│   │
-│   ├── 🔓 penetration-testing/      # اختبار الاختراق
-│   │   ├── payload-generator/       # مولد الحمولات
-│   │   ├── exploit-framework/       # إطار الاستغلال
-│   │   ├── password-cracker/        # كاسر كلمات المرور
-│   │   └── social-engineering/      # الهندسة الاجتماعية
-│   │
-│   └── 🦠 malware-analysis/         # تحليل البرمجيات الخبيثة
-│       ├── static-analyzer.py       # المحلل الثابت
-│       ├── dynamic-analyzer/        # المحلل الديناميكي
-│       ├── sandbox/                 # صندوق الأمان
-│       └── signature-detector/      # كاشف التوقيعات
+│   └── utils/                    # أدوات مساعدة
+│       ├── logger.py
+│       ├── crypto.py
+│       └── validators.py
 │
-├── 📝 scripts/                       # السكريبتات المساعدة
-│   ├── ⚙️ automation/               # أتمتة المهام
-│   │   ├── auto-scan.sh             # فحص تلقائي
-│   │   ├── report-generator.py      # مولد التقارير
-│   │   ├── batch-processor.py       # معالج الدُفعات
-│   │   └── scheduler.py             # المجدول
+├── scripts/                      # سكريبتات التشغيل
+│   ├── setup/                    
+│   │   ├── install.sh
+│   │   ├── configure.sh
+│   │   └── update.sh
 │   │
-│   ├── 🚀 setup/                    # إعداد النظام
-│   │   ├── install-tools.sh         # تثبيت الأدوات
-│   │   ├── configure-env.sh         # إعداد البيئة
-│   │   ├── update-system.sh         # تحديث النظام
-│   │   └── dependency-check.py      # فحص التبعيات
+│   ├── automation/
+│   │   ├── auto_scan.sh
+│   │   ├── generate_report.py
+│   │   └── scheduler.py
 │   │
-│   ├── 🧹 maintenance/              # الصيانة
-│   │   ├── cleanup.sh               # التنظيف
-│   │   ├── optimize.py              # التحسين
-│   │   ├── health-check.sh          # فحص الصحة
-│   │   └── update-tools.sh          # تحديث الأدوات
-│   │
-│   ├── 💾 backup/                   # النسخ الاحتياطي
-│   │   ├── backup-config.sh         # نسخ الإعدادات
-│   │   ├── backup-data.py           # نسخ البيانات
-│   │   ├── restore.sh               # الاستعادة
-│   │   └── sync-remote.py           # مزامنة بعيدة
-│   │
-│   └── 📈 monitoring/               # مراقبة النظام
-│       ├── system-stats.py          # إحصائيات النظام
-│       ├── performance-monitor.sh   # مراقب الأداء
-│       ├── alert-system.py          # نظام التنبيهات
-│       └── dashboard.py             # لوحة المعلومات
+│   └── maintenance/
+│       ├── cleanup.sh
+│       └── health_check.sh
 │
-├── ⚙️ configs/                      # ملفات الإعدادات
-│   ├── 🖥️ server/                   # إعدادات الخادم
-│   │   ├── nginx.conf               # إعدادات Nginx
-│   │   ├── apache.conf              # إعدادات Apache
-│   │   ├── ssl-config.conf          # إعدادات SSL
-│   │   └── firewall-rules.conf      # قواعد الجدار الناري
-│   │
-│   ├── 💻 client/                   # إعدادات العميل
-│   │   ├── browser-config.json     # إعدادات المتصفح
-│   │   ├── vpn-config.ovpn         # إعدادات VPN
-│   │   ├── proxy-settings.conf     # إعدادات البروكسي
-│   │   └── client-certs/           # شهادات العميل
-│   │
-│   ├── 🗄️ database/                 # إعدادات قاعدة البيانات
-│   │   ├── mysql.cnf               # إعدادات MySQL
-│   │   ├── postgres.conf           # إعدادات PostgreSQL
-│   │   ├── mongodb.conf            # إعدادات MongoDB
-│   │   └── redis.conf              # إعدادات Redis
-│   │
-│   ├── 🔒 security/                 # إعدادات الأمان
-│   │   ├── fail2ban.conf           # إعدادات Fail2ban
-│   │   ├── iptables-rules.sh       # قواعد IPTables
-│   │   ├── selinux-policy.conf     # سياسات SELinux
-│   │   └── audit.rules             # قواعد التدقيق
-│   │
-│   └── 🌐 network/                  # إعدادات الشبكة
-│       ├── interfaces.conf         # إعدادات الواجهات
-│       ├── dns-servers.conf        # خوادم DNS
-│       ├── routing-table.conf      # جدول التوجيه
-│       └── vlan-config.conf        # إعدادات VLAN
+├── configs/                      # ملفات الإعداد
+│   ├── app-config.yaml
+│   ├── security-policy.yaml
+│   ├── logging.yaml
+│   └── alert-rules.yaml
 │
-├── 📦 resources/                    # الموارد والملفات
-│   ├── 📄 templates/               # القوالب
-│   │   ├── report-template.html    # قالب التقرير
-│   │   ├── email-template.html     # قالب البريد
-│   │   ├── config-template.conf   # قالب الإعدادات
-│   │   └── script-template.sh     # قالب السكريبت
+├── resources/                    # موارد المشروع
+│   ├── templates/
+│   │   ├── report-template.html
+│   │   └── alert-template.html
 │   │
-│   ├── 📊 datasets/                # مجموعات البيانات
-│   │   ├── malware-samples/        # عينات البرمجيات الخبيثة
-│   │   ├── network-logs/           # سجلات الشبكة
-│   │   ├── vulnerability-db/       # قاعدة بيانات الثغرات
-│   │   └── attack-patterns/        # أنماط الهجمات
+│   ├── sample-data/
+│   │   ├── example_logs.json
+│   │   └── sample_events.json
 │   │
-│   ├── 📝 wordlists/               # قوائم الكلمات
-│   │   ├── passwords.txt           # كلمات المرور
-│   │   ├── usernames.txt           # أسماء المستخدمين
-│   │   ├── directories.txt         # أسماء الدلائل
-│   │   └── subdomains.txt          # النطاقات الفرعية
-│   │
-│   ├── 📜 certificates/            # الشهادات
-│   │   ├── ca-cert.pem             # شهادة السلطة
-│   │   ├── server-cert.pem         # شهادة الخادم
-│   │   ├── client-cert.pem         # شهادة العميل
-│   │   └── test-certs/             # شهادات الاختبار
-│   │
-│   └── 🖼️ images/                   # الصور والرسوم
-│       ├── banner.png              # لافتة المشروع
-│       ├── qr-code.png             # رمز QR
-│       ├── screenshots/            # لقطات الشاشة
-│       └── diagrams/               # المخططات
+│   └── diagrams/
+│       ├── architecture.png
+│       └── workflow.png
 │
-├── 💡 examples/                     # الأمثلة التطبيقية
-│   ├── 🟢 basic/                    # أمثلة أساسية
-│   │   ├── hello-security.py       # مثال بسيط
-│   │   ├── basic-scan.sh           # فحص أساسي
-│   │   ├── simple-encrypt.py       # تشفير بسيط
-│   │   └── network-ping.py         # ping الشبكة
+├── tests/                        # الاختبارات
+│   ├── unit/
+│   │   ├── test_engine.py
+│   │   ├── test_monitor.py
+│   │   └── test_utils.py
 │   │
-│   ├── 🟡 intermediate/             # أمثلة متوسطة
-│   │   ├── advanced-scanner.py     # فاحص متقدم
-│   │   ├── web-crawler.py          # زاحف ويب
-│   │   ├── log-analyzer.py         # محلل السجلات
-│   │   └── packet-capture.py       # التقاط الحزم
+│   ├── integration/
+│   │   ├── test_api.py
+│   │   └── test_workflow.py
 │   │
-│   ├── 🔴 advanced/                 # أمثلة متقدمة
-│   │   ├── ml-detection.py         # كشف بالذكاء الاصطناعي
-│   │   ├── custom-exploit.py       # استغلال مخصص
-│   │   ├── steganography.py        # إخفاء البيانات
-│   │   └── blockchain-audit.py     # تدقيق البلوك تشين
-│   │
-│   └── 🌍 real-world-scenarios/     # سيناريوهات واقعية
-│       ├── incident-response/      # الاستجابة للحوادث
-│       ├── red-team-exercise/      # تمرين الفريق الأحمر
-│       ├── blue-team-defense/      # دفاع الفريق الأزرق
-│       └── compliance-audit/       # تدقيق الامتثال
+│   └── security/
+│       ├── vulnerability_test.py
+│       └── compliance_test.py
 │
-├── 🧪 tests/                        # الاختبارات
-│   ├── 🔬 unit-tests/               # اختبارات الوحدة
-│   │   ├── test_scanner.py         # اختبار الفاحص
-│   │   ├── test_encryption.py      # اختبار التشفير
-│   │   ├── test_network.py         # اختبار الشبكة
-│   │   └── test_utils.py           # اختبار المساعدات
+├── .github/                      # إعدادات CI/CD
+│   ├── workflows/
+│   │   ├── ci.yml
+│   │   ├── security-scan.yml
+│   │   └── release.yml
 │   │
-│   ├── 🔗 integration-tests/        # اختبارات التكامل
-│   │   ├── test_full_scan.py       # اختبار الفحص الكامل
-│   │   ├── test_workflow.py        # اختبار سير العمل
-│   │   ├── test_api.py             # اختبار API
-│   │   └── test_database.py        # اختبار قاعدة البيانات
-│   │
-│   ├── 🛡️ security-tests/           # اختبارات الأمان
-│   │   ├── penetration-test.py     # اختبار الاختراق
-│   │   ├── vulnerability-test.py   # اختبار الثغرات
-│   │   ├── stress-test.py          # اختبار الضغط
-│   │   └── compliance-test.py      # اختبار الامتثال
-│   │
-│   └── 📊 performance-tests/        # اختبارات الأداء
-│       ├── benchmark.py            # قياس الأداء
-│       ├── load-test.py            # اختبار الحمولة
-│       ├── memory-test.py          # اختبار الذاكرة
-│       └── network-test.py         # اختبار الشبكة
+│   └── ISSUE_TEMPLATE/
+│       ├── bug_report.md
+│       └── feature_request.md
 │
-├── 📋 .github/                      # إعدادات GitHub
-│   ├── workflows/                  # سير العمل التلقائي
-│   │   ├── ci.yml                  # التكامل المستمر
-│   │   ├── security-scan.yml       # فحص الأمان
-│   │   ├── deploy.yml              # النشر
-│   │   └── release.yml             # الإصدار
-│   │
-│   ├── ISSUE_TEMPLATE/             # قوالب المشاكل
-│   │   ├── bug_report.md           # تقرير خطأ
-│   │   ├── feature_request.md      # طلب ميزة
-│   │   └── security_issue.md       # مشكلة أمنية
-│   │
-│   └── PULL_REQUEST_TEMPLATE.md    # قالب طلب الدمج
+├── README.md                     # وصف المشروع
+├── SECURITY.md                   # سياسة الأمان
+├── CONTRIBUTING.md               # دليل المساهمة
+├── CHANGELOG.md                  # سجل التغييرات
+├── LICENSE                       # رخصة المشروع
 │
-├── 📝 README.md                     # وصف المشروع الرئيسي
-├── 📄 LICENSE                       # رخصة المشروع
-├── 🤝 CONTRIBUTING.md               # دليل المساهمة
-├── 🔒 SECURITY.md                   # سياسة الأمان
-├── 📅 CHANGELOG.md                  # سجل التغييرات
-├── 📦 requirements.txt              # متطلبات Python
-├── 📦 package.json                  # متطلبات Node.js
-├── ⚙️ Dockerfile                    # ملف Docker
-├── 🐳 docker-compose.yml            # إعداد Docker Compose
-├── 🚫 .gitignore                    # ملفات مستبعدة من Git
-├── 🔧 .env.example                  # مثال متغيرات البيئة
-└── 🎯 Makefile                      # أوامر البناء والتشغيل
-```
-
-## 📊 إحصائيات المشروع
-
-| 📂 **القسم** | 📁 **عدد المجلدات** | 📄 **عدد الملفات** | 📝 **الوصف** |
-|:-------------|:------------------:|:----------------:|:-------------|
-| 📚 الوثائق | 5 | 15+ | شروحات ومراجع شاملة |
-| 🛠️ الأدوات | 7 | 50+ | أدوات أمنية متنوعة |
-| 📝 السكريبتات | 5 | 20+ | أتمتة وصيانة |
-| ⚙️ الإعدادات | 5 | 25+ | إعدادات النظام |
-| 📦 الموارد | 5 | 100+ | قوالب وبيانات |
-| 💡 الأمثلة | 4 | 30+ | تطبيقات عملية |
-| 🧪 الاختبارات | 4 | 20+ | ضمان الجودة |
-| **📊 المجموع** | **35+** | **260+** | **مشروع متكامل** |
-
-## 🎯 المميزات الرئيسية
-
-### 🏗️ **التنظيم المتقدم**
-- 📁 هيكل هرمي منطقي ومنظم
-- 🏷️ أسماء وصفية باللغة العربية والإنجليزية  
-- 📊 تصنيف حسب المستوى والتخصص
-- 🔍 سهولة البحث والوصول
-
-### 🛡️ **الأمان والقانونية**
-- ✅ أدوات مرخصة ومشروعة
-- 📋 وثائق أمنية شاملة
-- 🔒 سياسات الأمان الواضحة
-- ⚖️ التزام بالقوانين الدولية
-
-### 🎓 **التعليم والتطوير**
-- 📚 مستويات تعليمية متدرجة
-- 💡 أمثلة تطبيقية واقعية
-- 🧪 اختبارات شاملة
-- 📈 مسار تطوير واضح
-
-### 🤖 **الأتمتة والكفاءة**
-- ⚙️ سكريبتات أتمتة ذكية
-- 🔄 تكامل مستمر (CI/CD)
-- 📊 مراقبة وتقارير تلقائية
-- 🚀 نشر وتطوير سريع
+├── requirements.txt              # متطلبات Python
+├── package.json                  # متطلبات Node
+│
+├── Dockerfile                    # بناء الحاوية
+├── docker-compose.yml            # تشغيل النظام
+│
+├── .env.example                  # مثال متغيرات البيئة
+├── .gitignore
+└── Makefile                      # أوامر البناء

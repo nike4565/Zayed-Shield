@@ -1,0 +1,8 @@
+# DNS Spoofing Hosts File
+# Add to /etc/hosts or DNS server
+
+127.0.0.1 localhost
+
+# Redirect targets to attacker IP
+# Replace YOUR_ATTACKER_IP with actual IP
+

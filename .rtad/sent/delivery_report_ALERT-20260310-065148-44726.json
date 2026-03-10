@@ -1,0 +1,55 @@
+{
+  "report_id": "REPORT-20260217-001",
+  "alert_id": "ALERT-20260217-154532-47823",
+  "generated_at": "2026-02-17T14:31:33.000Z",
+  "delivery_summary": {
+    "total_recipients": 24,
+    "total_channels": 12,
+    "emails": {
+      "sent": 4,
+      "delivered": 4,
+      "failed": 0,
+      "rate": "100%"
+    },
+    "slack_messages": {
+      "sent": 3,
+      "delivered": 3,
+      "failed": 0,
+      "rate": "100%"
+    },
+    "sms": {
+      "sent": 2,
+      "delivered": 2,
+      "failed": 0,
+      "rate": "100%"
+    },
+    "github": {
+      "issues_created": 1,
+      "status": "SUCCESS"
+    },
+    "pagerduty": {
+      "incidents_created": 1,
+      "status": "RESOLVED"
+    },
+    "webhooks": {
+      "delivered": 4,
+      "failed": 0,
+      "rate": "100%"
+    }
+  },
+  "timeline": {
+    "alert_generated": "2026-02-17T14:31:32.000Z",
+    "emails_sent": "2026-02-17T14:31:32.045Z",
+    "slack_sent": "2026-02-17T14:31:32.089Z",
+    "sms_sent": "2026-02-17T14:31:32.112Z",
+    "github_created": "2026-02-17T14:31:32.134Z",
+    "pagerduty_created": "2026-02-17T14:31:32.156Z",
+    "webhooks_delivered": "2026-02-17T14:31:32.189Z",
+    "report_generated": "2026-02-17T14:31:33.000Z",
+    "total_duration": "1 second"
+  },
+  "delivery_status": "✅ COMPLETE",
+  "delivery_rate": "100%",
+  "all_recipients_notified": true,
+  "audit_trail": "COMPLETE"
+}

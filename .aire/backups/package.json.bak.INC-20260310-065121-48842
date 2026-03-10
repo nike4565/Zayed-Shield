@@ -1,0 +1,42 @@
+{
+  "name": "zayed-shield",
+  "version": "1.0.0",
+  "description": "🎯 مشروع مفتوح المصدر لتعزيز الأمن السيبراني لدولة الإمارات العربية المتحدة 🇦🇪",
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asrar-mared/Zayed-Shield.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asrar-mared/Zayed-Shield/issues"
+  },
+  "homepage": "https://github.com/asrar-mared/Zayed-Shield#readme",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "localtunnel": "^2.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3"
+  }
+}

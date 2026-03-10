@@ -1,0 +1,51 @@
+{
+  "slack_timestamp": "2026-02-17T14:31:32.000Z",
+  "messages_sent": [
+    {
+      "channel": "#security-critical-alerts",
+      "thread": "ts-1234567890",
+      "blocks": [
+        {
+          "type": "header",
+          "text": "🚨 CRITICAL VULNERABILITY ALERT"
+        },
+        {
+          "type": "section",
+          "text": "*CVE-2026-0001: Remote Code Execution*\nPackage: critical-lib v1.0.0\nSeverity: CRITICAL (CVSS 9.8)\nStatus: ✅ REMEDIATED"
+        },
+        {
+          "type": "actions",
+          "elements": [
+            {
+              "type": "button",
+              "text": "View Report",
+              "url": "https://security.company.com/incidents/INC-20260217-001"
+            },
+            {
+              "type": "button",
+              "text": "GitHub Issue",
+              "url": "https://github.com/issues/12345"
+            }
+          ]
+        }
+      ],
+      "status": "DELIVERED",
+      "reaction": "fire"
+    },
+    {
+      "channel": "#leadership",
+      "thread": "ts-1234567891",
+      "message": "🚨 Security incident auto-remediated. No user impact. Details: https://security.company.com/incidents/INC-20260217-001",
+      "status": "DELIVERED"
+    },
+    {
+      "channel": "#incident-response",
+      "thread": "ts-1234567892",
+      "message": "Automated response executed in 27ms. All systems verified safe. Ready for deployment.",
+      "status": "DELIVERED"
+    }
+  ],
+  "total_sent": 3,
+  "total_delivered": 3,
+  "average_latency_ms": 45
+}

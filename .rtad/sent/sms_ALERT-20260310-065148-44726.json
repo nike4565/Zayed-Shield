@@ -1,0 +1,20 @@
+{
+  "sms_timestamp": "2026-02-17T14:31:32.000Z",
+  "sms_sent": [
+    {
+      "to": "+201234567890",
+      "message": "🚨 CRITICAL: RCE in critical-lib. AUTO-REMEDIATED. Status: SAFE. Details: security.company.com/incidents/INC-20260217-001",
+      "status": "DELIVERED",
+      "delivered_at": "2026-02-17T14:31:32.034Z"
+    },
+    {
+      "to": "+201234567891",
+      "message": "🚨 CRITICAL: RCE in critical-lib. AUTO-REMEDIATED. Status: SAFE. Details: security.company.com/incidents/INC-20260217-001",
+      "status": "DELIVERED",
+      "delivered_at": "2026-02-17T14:31:32.056Z"
+    }
+  ],
+  "total_sent": 2,
+  "total_delivered": 2,
+  "delivery_rate": "100%"
+}

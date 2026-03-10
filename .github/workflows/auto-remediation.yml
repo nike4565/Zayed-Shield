@@ -240,6 +240,8 @@ jobs:
   # Job 2: اختبار التقارير
   # ============================================================
   validate-reports:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     name: 📋 Validate Reports
     needs: security-remediation

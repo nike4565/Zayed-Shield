@@ -1,0 +1,17 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/nike4565/Zayed-Shield.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+[remote "upstream"]
+	url = https://github.com/asrar-mared/zayed-shield.git
+	fetch = +refs/heads/*:refs/remotes/upstream/*
+[branch "الرئيسية"]
+	remote = origin
+	merge = refs/heads/الرئيسية

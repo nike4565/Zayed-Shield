@@ -1,4 +1,7 @@
 name: 🛡️ Zayed Shield APK Builder
+permissions:
+  contents: read
+
 
 on:
   push:

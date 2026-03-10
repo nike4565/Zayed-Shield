@@ -1,4 +1,7 @@
 # 🧞‍♂️ Digital Genie Secrets - CD Pipeline
+permissions:
+  contents: read
+
 name: 🚀 Continuous Deployment
 
 on:

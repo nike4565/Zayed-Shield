@@ -1,4 +1,7 @@
 name: Build and Generate Provenance
+permissions:
+  contents: read
+
 
 on:
   push:

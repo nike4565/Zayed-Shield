@@ -69,7 +69,7 @@ jobs:
 
       # 🔸🔸 الإضافة الأولى: انتظار الموافقة 🔸🔸
       - name: ⏸️ انتظار الموافقة
-        uses: hmarr/auto-approve-action@v3
+        uses: hmarr/auto-approve-action@v4
         if: github.actor == 'trusted-user'
 
       # 🔸🔸 الإضافة الثانية: تشغيل سكربت النشر 🔸🔸

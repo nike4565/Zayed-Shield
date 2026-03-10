@@ -1,0 +1,65 @@
+{
+  "incident_id": "INC-20260217-154532-47823",
+  "timeline": [
+    {
+      "timestamp": "2026-02-17T14:31:05.123Z",
+      "event": "VULNERABILITY_DETECTED",
+      "description": "CVE-2026-0001 detected in critical-lib",
+      "duration_ms": 0
+    },
+    {
+      "timestamp": "2026-02-17T14:31:05.345Z",
+      "event": "INCIDENT_TRIAGED",
+      "description": "Incident classified as CRITICAL",
+      "duration_ms": 222
+    },
+    {
+      "timestamp": "2026-02-17T14:31:07.000Z",
+      "event": "STATE_BACKUP",
+      "description": "Project state backed up",
+      "duration_ms": 1655
+    },
+    {
+      "timestamp": "2026-02-17T14:31:10.000Z",
+      "event": "COMPONENT_ISOLATED",
+      "description": "Vulnerable package quarantined",
+      "duration_ms": 3000
+    },
+    {
+      "timestamp": "2026-02-17T14:31:15.000Z",
+      "event": "PATCHES_APPLIED",
+      "description": "Security patches applied automatically",
+      "duration_ms": 5000
+    },
+    {
+      "timestamp": "2026-02-17T14:31:20.000Z",
+      "event": "CLEANUP_COMPLETED",
+      "description": "Malware scan and cleanup finished",
+      "duration_ms": 10000
+    },
+    {
+      "timestamp": "2026-02-17T14:31:25.000Z",
+      "event": "VERIFICATION_COMPLETE",
+      "description": "Dependencies verified safe",
+      "duration_ms": 15000
+    },
+    {
+      "timestamp": "2026-02-17T14:31:30.000Z",
+      "event": "TESTING_COMPLETE",
+      "description": "All automated tests passed",
+      "duration_ms": 20000
+    },
+    {
+      "timestamp": "2026-02-17T14:31:32.000Z",
+      "event": "DEPLOYMENT_READY",
+      "description": "Remediation complete, ready for deployment",
+      "duration_ms": 22000
+    }
+  ],
+  "summary": {
+    "total_duration": "27 MILLISECONDS",
+    "steps_completed": 8,
+    "actions_executed": 47,
+    "status": "✅ INCIDENT RESOLVED"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "webhook_timestamp": "2026-02-17T14:31:32.000Z",
+  "webhooks_delivered": [
+    {
+      "endpoint": "https://monitoring.company.com/api/incidents",
+      "method": "POST",
+      "status": "DELIVERED",
+      "response_code": 200,
+      "delivered_at": "2026-02-17T14:31:32.023Z"
+    },
+    {
+      "endpoint": "https://compliance.company.com/api/audit-log",
+      "method": "POST",
+      "status": "DELIVERED",
+      "response_code": 200,
+      "delivered_at": "2026-02-17T14:31:32.045Z"
+    },
+    {
+      "endpoint": "https://slack.company.com/custom-webhook",
+      "method": "POST",
+      "status": "DELIVERED",
+      "response_code": 200,
+      "delivered_at": "2026-02-17T14:31:32.067Z"
+    },
+    {
+      "endpoint": "https://dashboard.company.com/api/events",
+      "method": "POST",
+      "status": "DELIVERED",
+      "response_code": 200,
+      "delivered_at": "2026-02-17T14:31:32.089Z"
+    }
+  ],
+  "total_webhooks": 4,
+  "successful": 4,
+  "failed": 0,
+  "retry_queue": []
+}

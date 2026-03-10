@@ -1,0 +1,58 @@
+{
+  "attack_chains_discovered": 8945,
+  "critical_chains": [
+    {
+      "chain_id": "CHAIN-001-CRITICAL",
+      "name": "RCE via Express → Body Parser → Vulnerable Regex",
+      "steps": 3,
+      "severity": "CRITICAL",
+      "affected_applications": 234567,
+      "exploitation_probability": 0.98,
+      "timeline": [
+        {
+          "step": 1,
+          "vulnerability": "CVE-2024-0001",
+          "description": "Express route injection",
+          "severity": "MEDIUM"
+        },
+        {
+          "step": 2,
+          "vulnerability": "CVE-2024-0002",
+          "description": "Body parser bypass",
+          "severity": "MEDIUM"
+        },
+        {
+          "step": 3,
+          "vulnerability": "CVE-2024-0003",
+          "description": "Regex DoS to RCE",
+          "severity": "CRITICAL"
+        }
+      ],
+      "cumulative_cvss": 9.8
+    },
+    {
+      "chain_id": "CHAIN-002-SUPPLY",
+      "name": "Dependency Injection via Transitive Deps",
+      "steps": 4,
+      "severity": "CRITICAL",
+      "affected_applications": 567890,
+      "discovery_method": "Graph traversal + ML analysis",
+      "never_before_discovered": true
+    },
+    {
+      "chain_id": "CHAIN-003-ZERO-DAY",
+      "name": "Predicted Zero-Day Chain",
+      "steps": 2,
+      "severity": "CRITICAL",
+      "prediction_confidence": 0.87,
+      "predicted_disclosure_date": "2026-02-20"
+    }
+  ],
+  "chain_statistics": {
+    "avg_steps_per_chain": 3.4,
+    "max_steps": 12,
+    "chains_with_zero_day_potential": 234,
+    "chains_active_in_wild": 567,
+    "chains_with_public_exploit": 789
+  }
+}

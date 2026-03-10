@@ -20,7 +20,44 @@
 </div>
 
 ---
+# ⚔️ ASRAR Shield 🛡️
 
+<div align="center">
+
+
+
+![Banner](https://via.placeholder.com/1200x300/0D1117/00D9FF?text=ASRAR+SHIELD)
+
+
+
+[
+
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+
+](https://github.com/asrar-mared/asrar-shield)
+[
+
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
+](LICENSE)
+[
+
+![Platform](https://img.shields.io/badge/platform-Android-brightgreen.svg)
+
+](https://www.android.com)
+[
+
+![Termux](https://img.shields.io/badge/Termux-Required-orange.svg)
+
+](https://termux.com)
+
+**نظام حماية متقدم - إهداء لدولة الإمارات العربية المتحدة 🇦🇪**
+
+[📖 Documentation](docs/DOCUMENTATION.md) | [🚀 Quick Start](#quick-start) | [💡 Examples](#examples) | [🤝 Contributing](#contributing)
+
+</div>
+
+---
 ## 👑 رؤية زايد الخير | Zayed's Vision
 
 <div align="center">

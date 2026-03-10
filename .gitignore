@@ -87,3 +87,4 @@ security_alerts.txt
 blocked_ips.txt
 threat_level.tmp
 suspicious_*.tmp
+*.asc

@@ -12,8 +12,7 @@ permissions:
 # Timeout: 10 minutes per job
 #
 # Security Features:
-#   ✓ Tests on multiple Node versions simultaneously
-#   ✓ Caches npm packages for speed
+#   ✓ Tests on multiple Node versions simultaneously#   ✓ Caches npm packages for speed
 #   ✓ Verifies package execution (not just installation)
 #   ✓ Catches supply chain attacks within 20 minutes
 #   ✓ Detects corrupted or malicious packages
@@ -33,8 +32,7 @@ on:
     # * * * * = Every hour, every day, every month, every weekday
     # Frequency: Every 20 minutes (5→25→45→5 next hour)
     # Daily executions: 72 (24 hours × 60 min ÷ 20 min intervals)
-    - cron: "5,25,45 * * * *"  # Run every 20 minutes
-  
+    - cron:  "25 * * * *"  # Run every 20 minutes
   # WORKFLOW_DISPATCH: Manual trigger
   # Allows humans to run this workflow immediately from GitHub UI
   # Without waiting for cron schedule
@@ -46,7 +44,6 @@ jobs:
     # Job name (visible in GitHub Actions UI)
     # runs-on: Which operating system to use
     runs-on: ubuntu-latest
-    
     # TIMEOUT: Kill job if it runs longer than 10 minutes
     # Prevents stuck workflows from wasting resources
     # Cost control: stops runaway processes
@@ -74,7 +71,6 @@ jobs:
         with:
           # Fetch full history for better debugging
           fetch-depth: 0
-        
         # What this step does:
         #   ├─ Downloads entire repository to GitHub runner
         #   ├─ Creates fresh copy (not cached)
@@ -100,13 +96,11 @@ jobs:
           # Node version from matrix (18 or 20)
           # ${{ matrix.node }} = variable that changes per job
           node-version: ${{ matrix.node }}
-          
           # Get latest patch version of Node.js
           # Example: If Node 18.19.0 was released since last update,
           # check-latest: true will use 18.19.0 instead of 18.18.0
           # check-latest: true ensures security patches are included
           check-latest: true
-          
           # Enable npm package cache
           # cache: 'npm' speeds up subsequent runs by reusing node_modules
           # First run: Downloads packages (~2 minutes)
@@ -114,7 +108,6 @@ jobs:
           # Rebuilds cache only if package.json changes
           # Cost savings: Reduces workflow runtime significantly
           cache: 'npm'
-        
         # What this step does:
         #   ├─ Detects current Node: v0 (not installed)
         #   ├─ Downloads Node.js (18 or 20) from nodejs.org
@@ -139,7 +132,6 @@ jobs:
         run: |
           echo "🔍 Installing practica CLI..."
           npx @practica/create-node-app@latest
-        
         # What this step does:
         #   ├─ Uses npx (Node Package eXecute)
         #   ├─ Downloads @practica/create-node-app from npm registry
@@ -178,7 +170,6 @@ jobs:
         run: |
           echo "🔎 Checking CLI output..."
           practica --version || echo "⚠️ CLI failed to respond"
-        
         # What this step does:
         #   ├─ Runs: practica --version
         #   ├─ Checks if package executable works

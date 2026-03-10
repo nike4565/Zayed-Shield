@@ -136,7 +136,7 @@ jobs:
         run: npm test -- --coverage --maxWorkers=2
         
       - name: 📊 رفع تقرير التغطية
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage-final.json

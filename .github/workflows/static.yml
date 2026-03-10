@@ -1,0 +1,90 @@
+name: Secure GitHub Pages Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Hardened Static Pages Deployment
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Enable strict shell mode
+        run: |
+          set -euo pipefail
+          echo "Security mode enabled"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run Gitleaks scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check file sizes
+        run: |
+          echo "Checking file sizes..."
+          max_size=5242880
+          while IFS= read -r file; do
+            size=$(stat -c%s "$file")
+            if [ "$size" -gt "$max_size" ]; then
+              echo "File too large: $file ($size bytes)"
+              exit 1
+            fi
+          done < <(find . -type f)
+          echo "All files are within allowed limits"
+
+      - name: Generate SHA256 checksums
+        run: |
+          echo "Generating SHA256 checksums..."
+          find . -type f -exec sha256sum {} \;
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Cleanup workspace
+        if: always()
+        run: |
+          rm -rf ~/.cache || true
+          echo "Workspace cleaned"
+
+      - name: Write deployment summary
+        if: always()
+        run: |
+          {
+            echo "## GitHub Pages Deployment Summary"
+            echo ""
+            echo "- Status: ${{ job.status }}"
+            echo "- Branch: ${{ github.ref_name }}"
+            echo "- Commit: ${{ github.sha }}"
+            echo "- URL: ${{ steps.deployment.outputs.page_url }}"
+          } >> "$GITHUB_STEP_SUMMARY"

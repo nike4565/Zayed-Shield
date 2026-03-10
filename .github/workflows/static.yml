@@ -1,4 +1,7 @@
 name: Secure Deploy to GitHub Pages (Ultra 2025)
+permissions:
+  contents: read
+
 
 on:
   push:

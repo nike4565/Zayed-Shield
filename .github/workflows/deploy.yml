@@ -1,4 +1,7 @@
 name: Ultra Secure Production Deployment
+permissions:
+  contents: read
+
 
 concurrency:
   group: production-deploy-lock

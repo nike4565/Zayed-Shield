@@ -1,4 +1,7 @@
 # المسار: .github/workflows/security-scan.yml
+permissions:
+  contents: read
+
 # 🛡️ المارد الرقمي - نظام الفحص الأمني المتقدم
 # نظام شامل للكشف عن الثغرات والحماية الاستباقية
 

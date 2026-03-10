@@ -1,4 +1,7 @@
 name: 🛡️ المارد الرقمي - سير عمل الحماية والأمان
+permissions:
+  contents: read
+
 
 on:
   push:

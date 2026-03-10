@@ -1,29 +1,48 @@
 {
   "name": "zayed-shield",
   "version": "1.0.0",
-  "description": "🎯 مشروع مفتوح المصدر لتعزيز الأمن السيبراني لدولة الإمارات العربية المتحدة 🇦🇪",
-  "main": ".eslintrc.js",
+  "description": "Zayed Shield - Advanced Open Source Security Toolkit",
+  "main": "index.js",
+
   "directories": {
     "test": "tests"
   },
+
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "echo \"No tests configured\"",
+    "audit": "npm audit --audit-level=high"
   },
+
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asrar-mared/Zayed-Shield.git"
+    "url": "https://github.com/nike4565/Zayed-Shield.git"
   },
-  "keywords": [],
-  "author": "",
+
+  "keywords": [
+    "security",
+    "cybersecurity",
+    "penetration-testing",
+    "security-tools",
+    "zayed-shield"
+  ],
+
+  "author": "nike4565",
   "license": "ISC",
+
   "bugs": {
-    "url": "https://github.com/asrar-mared/Zayed-Shield/issues"
+    "url": "https://github.com/nike4565/Zayed-Shield/issues"
   },
-  "homepage": "https://github.com/asrar-mared/Zayed-Shield#readme",
+
+  "homepage": "https://github.com/nike4565/Zayed-Shield",
+
+  "engines": {
+    "node": ">=18"
+  },
+
   "dependencies": {
     "@octokit/core": "^7.0.6",
     "@octokit/graphql": "^9.0.3",
@@ -45,16 +64,6 @@
     "nanoid": "^5.1.6",
     "postcss": "^8.5.8",
     "qs": "^6.15.0",
-    "tmp": "^0.2.5",
-    "tough-cookie": "^6.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^10.0.3",
-    "gulp": "^5.0.1",
-    "mocha": "^11.3.0",
-    "node-notifier": "^10.0.1",
-    "nodemon": "^3.1.11",
-    "prettier": "^3.7.4",
-    "typescript": "^5.9.3"
+    "tmp": "^0.2.5"
   }
 }

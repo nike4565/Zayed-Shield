@@ -1,0 +1,9 @@
+/data/data/com.termux/files/home/Zayed-Shield/node_modules
+/data/data/com.termux/files/home/Zayed-Shield/.git
+/data/data/com.termux/files/home/Zayed-Shield/.backups
+/data/data/com.termux/files/home/Zayed-Shield/docs/.backups
+/data/data/com.termux/files/home/Zayed-Shield/docs/.git
+/data/data/com.termux/files/home/Zayed-Shield/ngrok
+/data/data/com.termux/files/home/Zayed-Shield/ngrok-v3-stable-linux-arm64.tgz
+/data/data/com.termux/files/home/Zayed-Shield/docs/ngrok
+/data/data/com.termux/files/home/Zayed-Shield/docs/ngrok-v3-stable-linux-arm64.tgz

@@ -1,4 +1,7 @@
 # 🧪 CyberGuard AI - دليل الاختبارات الشامل
+permissions:
+  contents: read
+
 
 **النسخة**: 2.0 | **آخر تحديث**: يناير 2070
 

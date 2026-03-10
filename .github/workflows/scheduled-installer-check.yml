@@ -1,4 +1,7 @@
 # 🔒 SCHEDULED INSTALLER CHECK - GitHub Actions Workflow
+permissions:
+  contents: read
+
 # 
 # Purpose: Automated package installation & verification every 20 minutes
 # Verifies npm package integrity, compatibility, and absence of supply chain attacks

@@ -438,7 +438,7 @@ jobs:
             🔗 Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           webhook_url: ${{ env.SLACK_WEBHOOK }}
       - name: 📧 Email Notification
-        uses: dawidd6/action-send-mail@v3
+        uses: dawidd6/action-send-mail@v11
         if: failure()
         with:
           server_address: smtp.gmail.com

@@ -76,7 +76,7 @@ jobs:
           ./scripts/deploy.sh
 
       - name: 📣 إخطار GitHub بأن النشر تم
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             core.notice("Deployment to production completed successfully.")

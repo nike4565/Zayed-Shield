@@ -28,7 +28,49 @@
 Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md) to maintain a respectful and inclusive community.
 
 ---
+# Contributing to ASRAR Shield
 
+## 🙏 Thank You
+
+Thank you for considering contributing to ASRAR Shield!
+
+## 🔧 How to Contribute
+
+### Reporting Bugs
+
+1. Check existing issues
+2. Create detailed bug report
+3. Include:
+   - OS version
+   - Steps to reproduce
+   - Expected vs actual behavior
+   - Logs
+
+### Feature Requests
+
+1. Check roadmap
+2. Open feature request issue
+3. Describe use case
+4. Suggest implementation
+
+### Code Contributions
+
+```bash
+# 1. Fork repo
+# 2. Create branch
+git checkout -b feature/amazing-feature
+
+# 3. Make changes
+# 4. Test thoroughly
+./test.sh
+
+# 5. Commit
+git commit -m 'Add amazing feature'
+
+# 6. Push
+git push origin feature/amazing-feature
+
+# 7. Open PR
 ## 🤝 How to Contribute
 
 ### 1. Reporting Bugs 🐛

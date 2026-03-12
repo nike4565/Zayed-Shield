@@ -49,3 +49,4 @@ security-backup-*/
 # signatures
 *.sig
 *.sha256
+sbom.json

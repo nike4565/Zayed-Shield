@@ -1,490 +1,252 @@
-## Temporary Read-Only Security & Governance Notice
+<div align="center">
 
-This repository is temporarily placed in a read-only governance state.
+<img src="https://img.shields.io/badge/🛡️_ZAYED_SHIELD-SECURITY_POLICY-gold?style=for-the-badge&labelColor=0a0a0a" />
 
-The source code remains publicly visible for transparency and review purposes,
-however, no external contributions, execution changes, or workflow modifications
-are accepted during this period.
+[![UAE Cybersecurity](https://img.shields.io/badge/UAE-National_Cybersecurity-009A44?style=for-the-badge&logo=shield&logoColor=white)](https://github.com/nike4565/Zayed-Shield)
+[![CVE Analyst](https://img.shields.io/badge/CVE-Analyst_Credited-EF3340?style=for-the-badge&logo=redhat&logoColor=white)](https://github.com/advisories)
+[![GPG Signed](https://img.shields.io/badge/GPG-RSA4096_Signed-4A90D9?style=for-the-badge&logo=gnuprivacyguard&logoColor=white)](#-pgp-public-key)
+[![Responsible Disclosure](https://img.shields.io/badge/Disclosure-Responsible-00C853?style=for-the-badge&logo=checkmarx&logoColor=white)](#-reporting-a-vulnerability)
+[![GHSA](https://img.shields.io/badge/GHSA-860%2B_Advisories-FFD700?style=for-the-badge&logo=github&logoColor=black)](https://github.com/advisories)
 
-This is a preventive security and compliance measure while the project undergoes
-final internal reviews and controlled delivery preparation.
+---
 
-There is no active security incident or compromise.
-All actions are intentional, documented, and aligned with hardened security practices.
+```
+██████╗ ██████╗ ███████╗██╗   ██╗    ███████╗ █████╗ ██╗   ██╗███████╗██████╗
+██╔══██╗██╔══██╗██╔════╝██║   ██║    ╚══███╔╝██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗
+██║  ██║██████╔╝█████╗  ██║   ██║      ███╔╝ ███████║ ╚████╔╝ █████╗  ██║  ██║
+██║  ██║██╔══██╗██╔══╝  ██║   ██║     ███╔╝  ██╔══██║  ╚██╔╝  ██╔══╝  ██║  ██║
+██████╔╝██║  ██║███████╗╚██████╔╝    ███████╗██║  ██║   ██║   ███████╗██████╔╝
+╚═════╝ ╚═╝  ╚═╝╚══════╝ ╚═════╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═════╝
+```
 
-Status: Read-Only (Temporary)
-Release: v20.0.0
+### 🔐 SECURITY POLICY — سياسة الأمان
+**Zayed Shield Enterprise Security · درع زايد**
 
+</div>
 
-# Security Policy
+---
 
-## Supported Versions
+## 📋 Table of Contents
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+- [Supported Versions](#-supported-versions)
+- [Reporting a Vulnerability](#-reporting-a-vulnerability)
+- [Response Timeline](#-response-timeline)
+- [Severity Classification](#-severity-classification)
+- [Disclosure Policy](#-disclosure-policy)
+- [Hall of Fame](#-hall-of-fame)
+- [Security Contacts](#-security-contacts)
+- [PGP Public Key](#-pgp-public-key)
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+---
 
-## Reporting a Vulnerability
+## ✅ Supported Versions
 
-Use this section to tell people how to report a vulnerability.
+<div align="center">
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
-/*!
- * 🛡️ درع زايد للأمن السيبراني - نظام الحماية المتقدم
- * حماية رقمية بروح الإمارات 🇦🇪
- * 
- * تحذير: هذا المشروع محمي بموجب قوانين الملكية الفكرية
- * لدولة الإمارات العربية المتحدة
- */
+| Version | Supported | Security Updates | Status |
+|:-------:|:---------:|:----------------:|:------:|
+| `3.x.x` | ✅ **Full Support** | ✅ Active | ![Latest](https://img.shields.io/badge/LATEST-3.0.0-00C853?style=flat-square) |
+| `2.5.x` | ✅ Critical Only | ✅ Patches | ![Maintained](https://img.shields.io/badge/MAINTAINED-2.5.x-4A90D9?style=flat-square) |
+| `2.4.x` | ⚠️ Limited | ⚠️ CVE Only | ![Limited](https://img.shields.io/badge/LIMITED-2.4.x-FFD700?style=flat-square) |
+| `2.3.x` | ❌ EOL | ❌ None | ![EOL](https://img.shields.io/badge/EOL-2.3.x-EF3340?style=flat-square) |
+| `< 2.3` | ❌ EOL | ❌ None | ![EOL](https://img.shields.io/badge/EOL-Legacy-gray?style=flat-square) |
 
-(function() {
-    'use strict';
+</div>
 
-    // 🔒 تشفير معلومات المشروع
-    const PROJECT_INFO = {
-        name: atob('2K/YsdmFINiy2KfZitmEINmE2YTYo9mF2YYg2KfZhNiz2YrYqNix2KfZhti5'),
-        owner: atob('2K/ZiNmE2Kkg2KfZhNil2YXYp9ix2KfYqiDYp9mE2LnYsdio2YrYqSDYp9mE2YXYqtit2K/YqQ=='),
-        protection: true,
-        timestamp: Date.now()
-    };
+> ⚠️ **Always use the latest release** to ensure you have all security patches applied.
 
-    // 🚨 كشف محاولات التخريب
-    class CyberShieldProtection {
-        constructor() {
-            this.violations = [];
-            this.isProtected = true;
-            this.startTime = Date.now();
-            this.initProtection();
-        }
+---
 
-        // 🛡️ تفعيل الحماية الشاملة
-        initProtection() {
-            this.preventRightClick();
-            this.preventTextSelection();
-            this.preventKeyboardShortcuts();
-            this.preventDevTools();
-            this.preventSourceViewing();
-            this.detectScreenCapture();
-            this.watermarkProtection();
-            this.sessionMonitoring();
-            this.geolocationTracking();
-            this.behaviorAnalysis();
-        }
+## 🚨 Reporting a Vulnerability
 
-        // 🚫 منع النقر بالزر الأيمن
-        preventRightClick() {
-            document.addEventListener('contextmenu', (e) => {
-                e.preventDefault();
-                this.logViolation('محاولة النقر بالزر الأيمن', 'RIGHT_CLICK');
-                this.showWarning('⚠️ تحذير أمني!', 'غير مسموح بالنقر بالزر الأيمن على هذا المشروع المحمي');
-                return false;
-            });
-        }
+<div align="center">
 
-        // 🚫 منع تحديد النص
-        preventTextSelection() {
-            document.addEventListener('selectstart', (e) => {
-                e.preventDefault();
-                this.logViolation('محاولة تحديد النص', 'TEXT_SELECTION');
-                return false;
-            });
+[![Report Security Issue](https://img.shields.io/badge/🔴_REPORT-Security_Issue-EF3340?style=for-the-badge)](mailto:nike494949@outlook.sa)
+[![GitHub Private Advisory](https://img.shields.io/badge/GitHub-Private_Advisory-0a0a0a?style=for-the-badge&logo=github)](https://github.com/nike4565/Zayed-Shield/security/advisories/new)
 
-            document.addEventListener('dragstart', (e) => {
-                e.preventDefault();
-                return false;
-            });
+</div>
 
-            // CSS Protection
-            const style = document.createElement('style');
-            style.textContent = `
-                * {
-                    -webkit-user-select: none !important;
-                    -moz-user-select: none !important;
-                    -ms-user-select: none !important;
-                    user-select: none !important;
-                    -webkit-touch-callout: none !important;
-                    -webkit-tap-highlight-color: transparent !important;
-                }
-                ::selection { background: transparent !important; }
-                ::-moz-selection { background: transparent !important; }
-            `;
-            document.head.appendChild(style);
-        }
+### 🔒 How to Report — طريقة الإبلاغ
 
-        // ⌨️ منع اختصارات لوحة المفاتيح الخطيرة
-        preventKeyboardShortcuts() {
-            document.addEventListener('keydown', (e) => {
-                const dangerousCombos = [
-                    // منع أدوات المطورين
-                    { ctrl: true, key: 'F12' },
-                    { ctrl: true, shift: true, key: 'I' },
-                    { ctrl: true, shift: true, key: 'J' },
-                    { ctrl: true, shift: true, key: 'C' },
-                    { key: 'F12' },
-                    
-                    // منع النسخ واللصق والحفظ
-                    { ctrl: true, key: 'A' },
-                    { ctrl: true, key: 'C' },
-                    { ctrl: true, key: 'V' },
-                    { ctrl: true, key: 'X' },
-                    { ctrl: true, key: 'S' },
-                    { ctrl: true, key: 'P' },
-                    // منع عرض مصدر الصفحة
-                    { ctrl: true, key: 'U' },
-                    // منع التحديث
-                    { key: 'F5' },
-                    { ctrl: true, key: 'R' },
-                    // منع الوضع الكامل للشاشة (لمنع إخفاء العلامة المائية)
-                    { key: 'F11' }
-                ];
+**DO NOT** open a public GitHub issue for security vulnerabilities.
 
-                const currentCombo = {
-                    ctrl: e.ctrlKey,
-                    shift: e.shiftKey,
-                    alt: e.altKey,
-                    key: e.key
-                };
+Use **one** of these secure channels:
 
-                if (dangerousCombos.some(combo => this.matchesCombo(currentCombo, combo))) {
-                    e.preventDefault();
-                    this.logViolation(`محاولة استخدام اختصار محظور: ${e.key}`, 'KEYBOARD_SHORTCUT');
-                    this.showWarning('🚨 انتهاك أمني!', `الاختصار ${e.key} محظور لحماية المشروع`);
-                    return false;
-                }
-            });
-        }
+#### Option 1 — GitHub Private Security Advisory (Preferred)
+```
+https://github.com/nike4565/Zayed-Shield/security/advisories/new
+```
+This is the **fastest and most secure** method. GitHub encrypts the report end-to-end.
 
-        // 🔍 مطابقة تركيبات المفاتيح
-        matchesCombo(current, target) {
-            return (!target.ctrl || current.ctrl) &&
-                   (!target.shift || current.shift) &&
-                   (!target.alt || current.alt) &&
-                   current.key === target.key;
-        }
+#### Option 2 — Encrypted Email
 
-        // 🛠️ كشف ومنع أدوات المطورين
-        preventDevTools() {
-            // كشف فتح أدوات المطورين
-            let devtools = { open: false, orientation: null };
-            setInterval(() => {
-                if (window.outerHeight - window.innerHeight > 160 || 
-                    window.outerWidth - window.innerWidth > 160) {
-                    if (!devtools.open) {
-                        devtools.open = true;
-                        this.logViolation('محاولة فتح أدوات المطورين', 'DEV_TOOLS');
-                        this.criticalSecurityBreach();
-                    }
-                } else {
-                    devtools.open = false;
-                }
-            }, 500);
+```
+📧  nike494949@outlook.sa
+🔑  PGP Key: 8429D4C1ECAC3080BCB84AA0982159B70BA77EFD
+```
 
-            // كشف الكونسول
-            let consoleMessages = 0;
-            const originalLog = console.log;
-            console.log = (...args) => {
-                consoleMessages++;
-                if (consoleMessages > 5) {
-                    this.logViolation('محاولة استخدام الكونسول', 'CONSOLE_ACCESS');
-                    this.criticalSecurityBreach();
-                }
-                return originalLog.apply(console, args);
-            };
-        }
+**Please include in your report:**
 
-        // 📄 منع عرض مصدر الصفحة
-        preventSourceViewing() {
-            // إخفاء المصدر الفعلي
-            const originalContent = document.documentElement.innerHTML;
-            Object.defineProperty(document, 'documentElement', {
-                get: () => {
-                    this.logViolation('محاولة الوصول للمصدر', 'SOURCE_ACCESS');
-                    return { innerHTML: '<!-- المحتوى محمي بواسطة درع زايد للأمن السيبراني 🛡️ -->' };
-                }
-            });
-        }
+```markdown
+## Vulnerability Report Template
 
-        // 📱 كشف محاولات تسجيل الشاشة
-        detectScreenCapture() {
-            // كشف تسجيل الشاشة
-            if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
-                const originalGetDisplayMedia = navigator.mediaDevices.getDisplayMedia;
-                navigator.mediaDevices.getDisplayMedia = (...args) => {
-                    this.logViolation('محاولة تسجيل الشاشة', 'SCREEN_CAPTURE');
-                    this.criticalSecurityBreach();
-                    return Promise.reject(new Error('تسجيل الشاشة محظور'));
-                };
-            }
+**Type:** [RCE / SQLi / XSS / Auth Bypass / Other]
+**Severity:** [Critical / High / Medium / Low]
+**Component:** [AI Engine / Firewall / Gateway / Forensics / Monitor]
+**Version Affected:** [e.g., 3.0.0]
 
-            // كشف Print Screen
-            document.addEventListener('keyup', (e) => {
-                if (e.key === 'PrintScreen') {
-                    this.logViolation('محاولة أخذ لقطة شاشة', 'SCREENSHOT');
-                    this.showWarning('📸 تحذير!', 'أخذ لقطات الشاشة محظور');
-                }
-            });
-        }
+### Description
+[Clear description of the vulnerability]
 
-        // 💧 العلامة المائية الديناميكية
-        watermarkProtection() {
-            const watermark = document.createElement('div');
-            watermark.innerHTML = `
-                <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); 
-                            font-size: 4rem; color: rgba(220, 38, 38, 0.1); z-index: 9999; 
-                            pointer-events: none; font-weight: bold; font-family: Arial, sans-serif;
-                            user-select: none; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                    🛡️ درع زايد للأمن السيبراني 🇦🇪<br>
-                    محمي بموجب قوانين دولة الإمارات<br>
-                    ${new Date().toLocaleString('ar-AE')}
-                </div>
-            `;
-            document.body.appendChild(watermark);
+### Steps to Reproduce
+1. ...
+2. ...
+3. ...
 
-            // تحديث العلامة المائية كل ثانية
-            setInterval(() => {
-                if (!document.body.contains(watermark)) {
-                    document.body.appendChild(watermark);
-                    this.logViolation('محاولة إزالة العلامة المائية', 'WATERMARK_REMOVAL');
-                }
-            }, 1000);
-        }
+### Proof of Concept
+[Code or screenshots — DO NOT share publicly]
 
-        // 👀 مراقبة الجلسة
-        sessionMonitoring() {
-            let activityTimer;
-            const resetTimer = () => {
-                clearTimeout(activityTimer);
-                activityTimer = setTimeout(() => {
-                    this.logViolation('جلسة غير نشطة لفترة طويلة', 'INACTIVE_SESSION');
-                }, 300000); // 5 دقائق
-            };
+### Impact
+[What an attacker could achieve]
 
-            ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
-                document.addEventListener(event, resetTimer, true);
-            });
+### Suggested Fix (optional)
+[If you have a recommended patch]
+```
 
-            // تسجيل معلومات المتصفح
-            this.logUserInfo();
-        }
+---
 
-        // 🌍 تتبع الموقع الجغرافي
-        geolocationTracking() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        this.logViolation(`الوصول من الموقع: ${position.coords.latitude}, ${position.coords.longitude}`, 'GEOLOCATION');
-                    },
-                    () => {
-                        this.logViolation('رفض مشاركة الموقع الجغرافي', 'GEOLOCATION_DENIED');
-                    }
-                );
-            }
-        }
+## ⏱️ Response Timeline
 
-        // 🧠 تحليل السلوك
-        behaviorAnalysis() {
-            let suspiciousActivity = 0;
-            let clickCount = 0;
-            let keyCount = 0;
+<div align="center">
 
-            document.addEventListener('click', () => {
-                clickCount++;
-                if (clickCount > 100) { // نشاط مشبوه
-                    suspiciousActivity++;
-                }
-            });
+```
+Report Received
+      │
+      ▼
+  ┌───────┐
+  │ 24hrs │ ── Acknowledgment sent to reporter
+  └───┬───┘
+      │
+      ▼
+  ┌───────┐
+  │ 72hrs │ ── Initial severity assessment
+  └───┬───┘
+      │
+      ▼
+  ┌────────┐
+  │  7 days│ ── Vulnerability confirmed / rejected
+  └───┬────┘
+      │
+      ▼
+  ┌────────┐
+  │ 30 days│ ── Patch developed and tested
+  └───┬────┘
+      │
+      ▼
+  ┌────────┐
+  │ 90 days│ ── Public disclosure (coordinated)
+  └────────┘
+```
 
-            document.addEventListener('keydown', () => {
-                keyCount++;
-                if (keyCount > 500) { // نشاط مشبوه
-                    suspiciousActivity++;
-                }
-            });
+</div>
 
-            setInterval(() => {
-                if (suspiciousActivity > 5) {
-                    this.logViolation('نشاط مشبوه مكثف', 'SUSPICIOUS_BEHAVIOR');
-                    this.criticalSecurityBreach();
-                }
-                clickCount = 0;
-                keyCount = 0;
-                suspiciousActivity = 0;
-            }, 60000); // كل دقيقة
-        }
+| Stage | Timeline | Action |
+|-------|----------|--------|
+| 🟡 Acknowledgment | **< 24 hours** | We confirm receipt of your report |
+| 🟠 Assessment | **< 72 hours** | Severity scored via CVSS 3.1 |
+| 🔴 Confirmation | **< 7 days** | Vulnerability verified or rejected |
+| 🔵 Patch | **< 30 days** | Fix developed, tested, deployed |
+| ✅ Disclosure | **< 90 days** | CVE published, reporter credited |
 
-        // 📝 تسجيل الانتهاكات
-        logViolation(description, type) {
-            const violation = {
-                timestamp: new Date().toISOString(),
-                description,
-                type,
-                userAgent: navigator.userAgent,
-                ip: this.getUserIP(),
-                url: window.location.href,
-                referrer: document.referrer,
-                screenSize: `${screen.width}x${screen.height}`,
-                language: navigator.language
-            };
+---
 
-            this.violations.push(violation);
-            // إرسال التقرير للخادم (في التطبيق الحقيقي)
-            console.warn('🚨 انتهاك أمني مكتشف:', violation);
-            // حفظ في التخزين المحلي للمراجعة
-            localStorage.setItem('zayed_security_violations', JSON.stringify(this.violations));
-        }
+## 🎯 Severity Classification
 
-        // 📊 تسجيل معلومات المستخدم
-        logUserInfo() {
-            const userInfo = {
-                timestamp: new Date().toISOString(),
-                userAgent: navigator.userAgent,
-                platform: navigator.platform,
-                language: navigator.language,
-                languages: navigator.languages,
-                cookieEnabled: navigator.cookieEnabled,
-                doNotTrack: navigator.doNotTrack,
-                screenResolution: `${screen.width}x${screen.height}`,
-                colorDepth: screen.colorDepth,
-                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                url: window.location.href,
-                referrer: document.referrer
-            };
+<div align="center">
 
-            console.info('👤 معلومات الجلسة:', userInfo);
-        }
+[![CVSS](https://img.shields.io/badge/Scoring-CVSS_3.1-4A90D9?style=for-the-badge&logo=data:image/svg+xml;base64,)](https://www.first.org/cvss/)
 
-        // 🌐 الحصول على IP المستخدم (تقريبي)
-        async getUserIP() {
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                return data.ip;
-            } catch (error) {
-                return 'Unknown';
-            }
-        }
+</div>
 
-        // ⚠️ عرض تحذيرات الأمان
-        showWarning(title, message) {
-            // إنشاء نافذة تحذير مخصصة
-            const warningDiv = document.createElement('div');
-            warningDiv.innerHTML = `
-                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                            background: rgba(0,0,0,0.9); z-index: 99999; display: flex; 
-                            align-items: center; justify-content: center; font-family: Arial, sans-serif;
-                            color: white; text-align: center;" id="securityWarning">
-                    <div style="background: linear-gradient(45deg, #dc2626, #7f1d1d); padding: 40px; 
-                                border-radius: 20px; border: 3px solid #FFD700; max-width: 500px;
-                                box-shadow: 0 0 50px rgba(220, 38, 38, 0.5);">
-                        <h2 style="margin: 0 0 20px 0; font-size: 2rem; color: #FFD700;">🛡️ ${title}</h2>
-                        <p style="font-size: 1.2rem; margin: 20px 0;">${message}</p>
-                        <div style="margin: 30px 0;">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA2MCA0MCI+PHJlY3Qgd2lkdGg9IjE1IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZGMyNjI2Ii8+PHJlY3QgeD0iMTUiIHk9IjAiIHdpZHRoPSI0NSIgaGVpZ2h0PSIxMy4zIiBmaWxsPSIjMTZhMzRhIi8+PHJlY3QgeD0iMTUiIHk9IjEzLjMiIHdpZHRoPSI0NSIgaGVpZ2h0PSIxMy4zIiBmaWxsPSIjZmZmZmZmIi8+PHJlY3QgeD0iMTUiIHk9IjI2LjYiIHdpZHRoPSI0NSIgaGVpZ2h0PSIxMy4zIiBmaWxsPSIjMDAwMDAwIi8+PC9zdmc+" alt="UAE Flag">
-                        </div>
-                        <p style="font-size: 1rem; color: #FFD700; font-weight: bold;">
-                            🇦🇪 محمي بموجب قوانين دولة الإمارات العربية المتحدة
-                        </p>
-                        <button onclick="document.getElementById('securityWarning').remove()" 
-                                style="margin-top: 20px; padding: 10px 30px; background: #FFD700; 
-                                       color: #000; border: none; border-radius: 25px; font-weight: bold; 
-                                       cursor: pointer; font-size: 1.1rem;">
-                            فهمت ولن أكرر ذلك
-                        </button>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(warningDiv);
+| Severity | CVSS Score | Response | Example |
+|----------|:----------:|----------|---------|
+| 🔴 **Critical** | 9.0 – 10.0 | Immediate / same day | RCE, Auth bypass, Key exposure |
+| 🟠 **High** | 7.0 – 8.9 | < 7 days | Privilege escalation, Data leak |
+| 🟡 **Medium** | 4.0 – 6.9 | < 30 days | XSS, CSRF, Information disclosure |
+| 🟢 **Low** | 0.1 – 3.9 | Next release | Minor info leaks, Low-impact bugs |
 
-            // إزالة التحذير تلقائياً بعد 5 ثوان
-            setTimeout(() => {
-                if (document.getElementById('securityWarning')) {
-                    document.getElementById('securityWarning').remove();
-                }
-            }, 5000);
-        }
+---
 
-        // 🚨 إجراء طوارئ للانتهاكات الخطيرة
-        criticalSecurityBreach() {
-            // إخفاء المحتوى
-            document.body.style.display = 'none';
-            // عرض رسالة الانتهاك الحرج
-            const breachDiv = document.createElement('div');
-            breachDiv.innerHTML = `
-                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                            background: linear-gradient(45deg, #dc2626, #7f1d1d); z-index: 999999; 
-                            display: flex; align-items: center; justify-content: center; 
-                            font-family: Arial, sans-serif; color: white; text-align: center;">
-                    <div style="max-width: 600px; padding: 40px;">
-                        <h1 style="font-size: 3rem; margin-bottom: 30px; color: #FFD700;">🚨 انتهاك أمني حرج!</h1>
-                        <div style="margin: 30px 0;">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTIwIDgwIj48cmVjdCB3aWR0aD0iMzAiIGhlaWdodD0iODAiIGZpbGw9IiNkYzI2MjYiLz48cmVjdCB4PSIzMCIgeT0iMCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjI2LjciIGZpbGw9IiMxNmEzNGEiLz48cmVjdCB4PSIzMCIgeT0iMjYuNyIgd2lkdGg9IjkwIiBoZWlnaHQ9IjI2LjciIGZpbGw9IiNmZmZmZmYiLz48cmVjdCB4PSIzMCIgeT0iNTMuNCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjI2LjciIGZpbGw9IiMwMDAwMDAiLz48L3N2Zz4=" alt="UAE Flag">
-                        </div>
-                        <h2 style="color: #FFD700; margin: 20px 0;">🛡️ درع زايد للأمن السيبراني</h2>
-                        <p style="font-size: 1.4rem; line-height: 1.6;">
-                            تم كشف محاولة انتهاك أمني للمشروع<br>
-                            تم توثيق جميع البيانات وإرسالها للجهات المختصة<br><br>
-                            <strong style="color: #FFD700;">هذا المشروع محمي بموجب قوانين الملكية الفكرية<br>
-                            لدولة الإمارات العربية المتحدة</strong>
-                        </p>
-                        <p style="margin-top: 30px; font-size: 1.1rem;">
-                            رقم التقرير: ZCS-${Date.now()}<br>
-                            التوقيت: ${new Date().toLocaleString('ar-AE')}
-                        </p>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(breachDiv);
+## 📜 Disclosure Policy
 
-            // إعادة توجيه بعد 10 ثوان
-            setTimeout(() => {
-                window.location.href = 'about:blank';
-            }, 10000);
-        }
+We follow **Coordinated Vulnerability Disclosure (CVD)**:
 
-        // 📊 تقرير الأمان
-        generateSecurityReport() {
-            return {
-                projectInfo: PROJECT_INFO,
-                sessionDuration: Date.now() - this.startTime,
-                totalViolations: this.violations.length,
-                violations: this.violations,
-                timestamp: new Date().toISOString()
-            };
-        }
-    }
+- 🔐 **Private first** — All reports handled privately until patch is ready
+- 📅 **90-day deadline** — We aim to patch within 90 days of confirmed report
+- 🏆 **Credit always given** — Reporters credited in CHANGELOG, GHSA, and CVE
+- 🚫 **No legal action** — We will never pursue legal action against good-faith researchers
+- 🌍 **CVE assignment** — We request CVE IDs for all confirmed Critical/High issues
 
-    // 🚀 تفعيل نظام الحماية
-    const cyberShield = new CyberShieldProtection();
+> This policy aligns with [GitHub's Security Advisory](https://docs.github.com/en/code-security/security-advisories) standards and [CERT/CC CVD guidelines](https://vuls.cert.org/confluence/display/CVD).
 
-    // 🔗 ربط بالكائن العام (للمراقبة)
-    window.ZayedCyberShield = {
-        getSecurityReport: () => cyberShield.generateSecurityReport(),
-        isProtected: () => cyberShield.isProtected
-    };
+---
 
-    // 📢 رسالة الترحيب الأمنية
-    console.log(`
-    🛡️ مرحباً بك في درع زايد للأمن السيبراني 🇦🇪
-    تم تفعيل نظام الحماية المتقدم
-    المشروع محمي بموجب قوانين دولة الإمارات العربية المتحدة
-    جميع الأنشطة مراقبة ومسجلة لأغراض الأمان
-    🔒 حماية رقمية بروح الإمارات
-    `);
+## 🏆 Hall of Fame
 
-    // 🎯 حماية ضد التلاعب بالسكريبت نفسه
-    Object.freeze(CyberShieldProtection);
-    Object.freeze(cyberShield);
-})();
+> شكر وتقدير لكل الباحثين الذين ساهموا في أمان المشروع
 
-/*!
- * نهاية سكريبت الحماية - درع زايد للأمن السيبراني
- * 🇦🇪 "من الإمارات... للعالم" 🇦🇪
- */
+<div align="center">
+
+| Researcher | Findings | Severity | Year |
+|:----------:|:--------:|:--------:|:----:|
+| **asrar-mared** | 119 Critical Vulnerabilities · 860+ GHSA Advisories | 🔴 Critical | 2025–2026 |
+| *(Your name here)* | *(Report a vulnerability to be listed)* | — | — |
+
+</div>
+
+---
+
+## 📞 Security Contacts
+
+<div align="center">
+
+| Channel | Contact | Encryption |
+|:-------:|:-------:|:----------:|
+| 📧 Email | `nike494949@outlook.sa` | PGP Required for Critical |
+| 🐙 GitHub Advisory | [Private Advisory](https://github.com/nike4565/Zayed-Shield/security/advisories/new) | E2E Encrypted |
+| 🔐 PGP | `8429D4C1ECAC3080BCB84AA0982159B70BA77EFD` | RSA-4096 |
+
+</div>
+
+---
+
+## 🔑 PGP Public Key
+
+```
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Key ID:          8429D4C1ECAC3080BCB84AA0982159B70BA77EFD
+Type:            RSA 4096-bit
+Created:         2026-02-23
+UID:             asrar-mared <nike49424@proton.me>
+Subkey:          A45D0A0F67078BA046F918D64DF9B236C5EED34D
+-----END PGP PUBLIC KEY BLOCK-----
+```
+
+> 📥 Import via: `gpg --recv-keys 8429D4C1ECAC3080BCB84AA0982159B70BA77EFD`
+
+---
+
+<div align="center">
+
+[![Security Policy](https://img.shields.io/badge/Security-Policy_v3.0-gold?style=for-the-badge&logo=shield&logoColor=black)](https://github.com/nike4565/Zayed-Shield/security)
+[![Responsible Disclosure](https://img.shields.io/badge/We_Support-Responsible_Disclosure-009A44?style=for-the-badge)](https://github.com/nike4565/Zayed-Shield/security/advisories/new)
+
+**🛡️ Zayed Shield Enterprise Security**
+
+*This security policy is effective as of 2025 and applies to all repositories under*
+*[github.com/nike4565/Zayed-Shield](https://github.com/nike4565/Zayed-Shield)*
+
+🇦🇪 *Protecting the UAE's digital future — one vulnerability at a time* 🇦🇪
+
+</div>
+

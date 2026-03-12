@@ -1,104 +1,40 @@
-# ===========================================
-# 🛡️ درع زايد للأمن السيبراني
-# Zayed Shield - Git Ignore Configuration
-# ===========================================
+# Backups and archives
+.backups/
+.git-backup-before-unforking/
+*.bak
+*.backup
+*.tar.gz
+*.zip
 
-# Dependencies
-node_modules/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+# Incident / remediation / automation artifacts
+.aire/
+.rtad/
+.vih/
+.caal/
 
-# Build outputs
-dist/
-build/
-out/
-*.min.js
-*.min.css
+# Signatures / checksums
+*.sig
+*.sha256
+*.sha512
 
-# Logs and temporary files
+# Runtime / temp
+tmp/
+temp/
+*.tmp
 *.log
-logs/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
-# IDE and Editor files
-.idea/
-.vscode/
+# OS / editor junk
+.DS_Store
+Thumbs.db
 *.swp
 *.swo
-*~
-.DS_Store
 
-# Test coverage
-coverage/
-.nyc_output/
-
-# Environment files
-.env
-.env.local
-.env.*.local
-*.env
-
-# OS generated files
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Security - sensitive files
-*.pem
-*.key
-*.crt
-*.p12
-*.pfx
-secrets/
-credentials/
-
-# Temporary security scan files
-/tmp/
-*.tmp
-*.temp
+# Dependency / generated reports if not meant for versioning
+reports/*.json
 
 # Python
 __pycache__/
-*.py[cod]
-*$py.class
-.Python
-venv/
-ENV/
+*.pyc
 
-# Cache
-.cache/
-.npm/
-.eslintcache
-
-# Backup files
-*.bak
-*.backup
-*.old
-
-# Documentation build
-docs/_build/
-
-# Security logs (should not be committed)
-/var/log/
-security_alerts.txt
-blocked_ips.txt
-threat_level.tmp
-suspicious_*.tmp
-*.asc
-*.sig
-docs-backup/
-
-# Local binaries and archives
-ngrok
-ngrok*
-docs-backup/
-*.tgz
-
-# Ignore local ngrok artifacts
-ngrok
-ngrok*
-docs/ngrok
-docs/ngrok*
+# Node
+node_modules/

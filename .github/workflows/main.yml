@@ -456,7 +456,7 @@ jobs:
             Protected by asrar-mared (Digital Warrior)
       - name: 💬 Create Issue on Failure
         if: failure() && github.event_name != 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             github.rest.issues.create({
@@ -486,7 +486,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: 🗑️ Delete Old Artifacts
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const days = 30;

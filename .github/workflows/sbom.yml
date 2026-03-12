@@ -3,6 +3,7 @@ name: SBOM
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -19,16 +20,24 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
+      - name: Install dependencies if package.json exists
+        shell: bash
         run: |
           if [ -f package.json ]; then
-            npm install
+            npm install || npm install --package-lock-only || true
+          else
+            echo "No package.json found"
           fi
 
       - name: Generate SBOM
+        shell: bash
         run: |
           npm install -g @cyclonedx/cyclonedx-npm
-          cyclonedx-npm --output-file sbom.json || echo "{}" > sbom.json
+          if [ -f package.json ]; then
+            cyclonedx-npm --output-file sbom.json || echo "{}" > sbom.json
+          else
+            echo "{}" > sbom.json
+          fi
 
       - uses: actions/upload-artifact@v4
         with:

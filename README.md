@@ -1,3 +1,152 @@
+# 🛡️ Zayed Shield 🇦🇪
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Focus-Cybersecurity-critical?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Framework-Open%20Source-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Region-UAE-red?style=for-the-badge" />
+</p>
+
+---
+
+## 🇦🇪 Dedication to the United Arab Emirates
+
+This project is dedicated to the **United Arab Emirates** in recognition of its leadership in fostering innovation, advancing technological development, and strengthening national cybersecurity capabilities.
+
+All work is conducted in **full respect of national laws and regulations**, aligned with the country's vision for a **secure, advanced, and research-driven digital environment**.
+
+---
+
+## 🧠 Pillars of National Innovation
+
+- **Technological Innovation** — Advancing AI-powered cybersecurity tools  
+- **Digital Readiness** — Enhancing detection, analysis, and response capabilities  
+- **Smart Infrastructure** — Supporting digital transformation that reinforces national security  
+- **Open Development** — Providing an open-source research ecosystem for the UAE tech community  
+- **National Commitment** — Operating with loyalty, responsibility, and full legal compliance  
+
+---
+
+## 🛡️ Zayed Cyber Shield 🇦🇪
+
+A national **open-source digital defense framework** developed with a **military-grade approach** to support the cybersecurity capabilities of the **United Arab Emirates**.
+
+The system enhances digital readiness and develops **field-grade AI tools** for monitoring, analysis, and rapid response, operating under the nation’s vision for protecting **critical digital infrastructure**.
+
+---
+
+## 🟨 Approved National Numbers
+
+<p align="left">
+  <img src="https://img.shields.io/badge/MOE-11718-9acd32?style=for-the-badge&labelColor=4b5563" />
+  <img src="https://img.shields.io/badge/MOE-11725-9acd32?style=for-the-badge&labelColor=4b5563" />
+  <img src="https://img.shields.io/badge/MOE-11775-9acd32?style=for-the-badge&labelColor=4b5563" />
+</p>
+
+---
+
+## 🏛️ Presidential Cybersecurity Initiative – Open Source 🇦🇪
+
+A national initiative dedicated to protecting the digital infrastructure of the **United Arab Emirates** through:
+
+- Discovering security vulnerabilities within **controlled and authorized environments**
+- Documenting and analyzing findings inside an **institutional testbed**
+- Supporting national cyber defense development through a structured open-source model
+
+> **This project is defined as a UAE-aligned open-source cybersecurity effort operating under full respect for national laws and contributing to the country’s strategic digital security vision.**
+
+---
+
+## 🏢 Operational Environment
+
+The project operates within the **Cyber Investigation Unit at asrar-mared HQ**, with technical records and digital evidence maintained across the following platforms to ensure **data integrity**, **controlled access**, and a **reliable chain of custody**.
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Platform</th>
+      <th align="left">Role</th>
+      <th align="left">Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>GitHub</strong></td>
+      <td>Version Control</td>
+      <td>Technical records, source tracking, release management, and artifact preservation</td>
+    </tr>
+    <tr>
+      <td><strong>Microsoft Learn</strong></td>
+      <td>Documentation Layer</td>
+      <td>Structured procedures, technical guidance, and operational knowledge reference</td>
+    </tr>
+    <tr>
+      <td><strong>Google Cloud</strong></td>
+      <td>Evidence Storage</td>
+      <td>Secure storage, distributed workflows, and forensic data handling support</td>
+    </tr>
+  </tbody>
+</table>
+
+> This structure supports **consistent documentation, controlled access, and professional-grade digital forensics operations**.
+
+---
+
+# 🔬 Security Research Package
+
+## 🧩 MariaDB Guardian Script
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Component</th>
+      <th align="left">Type</th>
+      <th align="left">Description</th>
+      <th align="left">Operational Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>mariadb-guardian.sh</code></td>
+      <td>Shell Script</td>
+      <td>Security monitoring and hardening support for MariaDB environments</td>
+      <td>Detection, inspection, baseline validation, and defensive response preparation</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## ⚙️ Core Objectives
+
+- Strengthen digital defense readiness  
+- Support authorized cybersecurity research activities  
+- Improve monitoring and response efficiency  
+- Enable structured forensic and technical documentation  
+- Contribute to national cyber capability development  
+
+---
+
+## 📦 Project Structure
+
+``bash
+Zayed-Shield/
+├── README.md
+├── LICENSE
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── SECURITY.md
+├── docs/
+│   ├── architecture.md
+│   ├── operations.md
+│   └── investigation-guidelines.md
+├── research/
+│   ├── findings/
+│   ├── assessments/
+│   └── notes/
+└── scripts/
+    └── mariadb-guardian.sh
+
 ## 🛡️ Zayed Shield – درع زايد الرقمي
 
 🎯 مشروع مفتوح المصدر لتعزيز الأمن السيبراني لدولة الإمارات العربية المتحدة 🇦🇪

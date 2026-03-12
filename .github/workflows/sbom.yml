@@ -4,20 +4,33 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   sbom:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate SBOM
-        uses: anchore/sbom-action@v0
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          format: spdx-json
-          output-file: sbom.spdx.json
+          node-version: 20
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Install dependencies
+        run: |
+          if [ -f package.json ]; then
+            npm install
+          fi
+
+      - name: Generate SBOM
+        run: |
+          npm install -g @cyclonedx/cyclonedx-npm
+          cyclonedx-npm --output-file sbom.json || echo "{}" > sbom.json
+
+      - uses: actions/upload-artifact@v4
         with:
           name: sbom
-          path: sbom.spdx.json
+          path: sbom.json

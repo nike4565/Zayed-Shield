@@ -1,0 +1,17 @@
+name: SLSA Provenance
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: slsa-framework/slsa-github-generator/actions/generator@v2

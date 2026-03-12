@@ -1,0 +1,4 @@
+- name: Initialize Security
+  uses: ./.github/actions/security-bootstrap
+  with:
+    scan-level: "deep"

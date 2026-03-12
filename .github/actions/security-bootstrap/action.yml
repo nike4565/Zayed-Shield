@@ -1,5 +1,5 @@
 name: "Zayed Security Bootstrap"
-author: "Zayed Cyber Shield"
+author: "nike4565"
 description: "Initialize security scanning environment for the repository"
 
 inputs:
@@ -16,16 +16,15 @@ outputs:
 runs:
   using: "composite"
   steps:
-
     - name: Prepare security environment
       id: bootstrap
+      shell: bash
       run: |
         echo "Initializing Zayed Security Environment..."
         echo "Scan level: ${{ inputs.scan-level }}"
-        echo "status=initialized" >> $GITHUB_OUTPUT
-      shell: bash
+        echo "status=initialized" >> "$GITHUB_OUTPUT"
 
     - name: Verify environment
+      shell: bash
       run: |
         echo "Environment ready for security scanning"
-      shell: bash

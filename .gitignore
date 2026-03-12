@@ -38,3 +38,14 @@ __pycache__/
 
 # Node
 node_modules/
+# security backups
+security-backup-*/
+
+# automation artifacts
+.backups/
+.aire/
+.git-backup-before-unforking/
+
+# signatures
+*.sig
+*.sha256

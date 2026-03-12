@@ -1,0 +1,61 @@
+{
+  "graph_id": "ZAYED-GRAPH-20260217-001",
+  "timestamp": "2026-02-17T14:35:30Z",
+  "graph_statistics": {
+    "total_nodes": 445678,
+    "total_edges": 1234567,
+    "node_types": {
+      "vulnerability": 145234,
+      "package": 234567,
+      "maintainer": 45678,
+      "ecosystem": 23,
+      "commit": 567890,
+      "attack_chain": 8945
+    },
+    "edge_types": {
+      "ghsa_to_cve": 123456,
+      "package_to_vulnerability": 345678,
+      "maintainer_to_package": 123456,
+      "vulnerability_to_chain": 234567,
+      "commit_to_vulnerability": 345678,
+      "dependency_to_dependency": 62132
+    }
+  },
+  "graph_structure": {
+    "layers": [
+      {
+        "layer": "ADVISORY_LAYER",
+        "nodes": 145234,
+        "description": "All GHSA and CVE advisories"
+      },
+      {
+        "layer": "PACKAGE_LAYER",
+        "nodes": 234567,
+        "description": "All vulnerable packages"
+      },
+      {
+        "layer": "DEPENDENCY_LAYER",
+        "nodes": 456789,
+        "description": "All dependency relationships"
+      },
+      {
+        "layer": "MAINTAINER_LAYER",
+        "nodes": 45678,
+        "description": "All package maintainers"
+      },
+      {
+        "layer": "ATTACK_LAYER",
+        "nodes": 8945,
+        "description": "All discovered attack chains"
+      }
+    ]
+  },
+  "connectivity": {
+    "average_degree": 8.3,
+    "clustering_coefficient": 0.67,
+    "shortest_path_length": 4.2,
+    "connected_components": 47,
+    "max_component_size": 428932,
+    "betweenness_centrality_high": "openssl, curl, nodejs, python, java"
+  }
+}

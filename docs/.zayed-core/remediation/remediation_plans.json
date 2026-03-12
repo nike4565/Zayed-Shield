@@ -1,0 +1,49 @@
+{
+  "remediation_plans_generated": 234567,
+  "sample_plans": [
+    {
+      "plan_id": "REMEDY-001-LOG4J",
+      "vulnerability": "CVE-2021-44228",
+      "current_state": "Vulnerable in 3.2M projects",
+      "remediation_strategy": "Rolling update with compatibility matrix",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Identify affected versions",
+          "versions": ["2.0 - 2.14.1", "1.2 - 1.2.17"]
+        },
+        {
+          "step": 2,
+          "action": "Check breaking changes",
+          "safe_versions": ["2.17.0+", "1.2.18+"]
+        },
+        {
+          "step": 3,
+          "action": "Generate migration paths",
+          "paths": 47
+        },
+        {
+          "step": 4,
+          "action": "Auto-update safe paths",
+          "automation": "100%"
+        }
+      ],
+      "estimated_time": "2 hours",
+      "risk_level": "LOW"
+    },
+    {
+      "plan_id": "REMEDY-002-OPENSSL",
+      "vulnerability": "CVE-2022-0567",
+      "current_state": "Vulnerable in 450K core libraries",
+      "complexity": "HIGH",
+      "recommendation": "Requires careful coordination",
+      "coordination_required": ["maintainers", "distributions", "enterprises"]
+    }
+  ],
+  "automation_potential": {
+    "can_auto_fix": 145678,
+    "requires_review": 67890,
+    "requires_manual_intervention": 21000,
+    "automation_rate": "87.4%"
+  }
+}

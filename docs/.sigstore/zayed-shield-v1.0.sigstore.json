@@ -1,0 +1,58 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "zayed-shield-v1.0.zip",
+      "digest": {
+        "sha256": "d9dbbf099cf0d18adacf1a5c386d989d6910f00c852d06a2c4504ba4148a5928"
+      }
+    }
+  ],
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://github.com/asrar-mrad/zayed-shield/.github/workflows/build.yml",
+      "externalParameters": {
+        "workflow": "build.yml",
+        "repository": "github.com/asrar-mrad/zayed-shield",
+        "ref": "refs/heads/main",
+        "trigger": "workflow_dispatch",
+        "builder": "github-actions"
+      },
+      "internalParameters": {
+        "os": "ubuntu-latest",
+        "run_id": "manual-run",
+        "run_attempt": "1"
+      },
+      "resolvedDependencies": [
+        {
+          "uri": "git+github.com/asrar-mrad/zayed-shield@refs/heads/main",
+          "digest": {
+            "gitCommit": "54bcf977d835c47befe9ab2ca4b911c90c7cbaf7"
+          },
+          "name": "guardian-core.js",
+          "downloadLocation": "https://github.com/asrar-mrad/zayed-shield/blob/main/guardian-core.js",
+          "mediaType": "application/javascript",
+          "annotations": {
+            "source": "manual"
+          }
+        }
+      ]
+    },
+    "runDetails": {
+      "builder": {
+        "id": "https://github.com/slsa-framework/slsa-github-generator",
+        "builderDependencies": [],
+        "version": {
+          "github-actions": "v3"
+        }
+      },
+      "metadata": {
+        "invocationId": "build-manual-run",
+        "startedOn": "2025-11-26T08:23:39Z",
+        "finishedOn": "2025-11-26T08:23:39Z"
+      },
+      "byproducts": []
+    }
+  }
+}

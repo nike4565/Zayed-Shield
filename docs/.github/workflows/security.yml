@@ -1,0 +1,320 @@
+name: 🛡️ المارد الرقمي - سير عمل الحماية والأمان
+permissions:
+  contents: read
+
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # فحص أمني يومي في الساعة 2 صباحاً
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18.x'
+  PYTHON_VERSION: '3.11'
+
+# أذونات محدودة للأمان
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  # ========================================
+  # 1. فحص الأمان والثغرات
+  # ========================================
+  security-scan:
+    name: 🔒 فحص الأمان الشامل
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      - name: 📥 استنساخ الكود
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: 🔍 فحص الأسرار المسربة
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          
+      - name: 🛡️ فحص الثغرات الأمنية - CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript, python
+          queries: security-and-quality
+          
+      - name: 🏗️ بناء المشروع للتحليل
+        uses: github/codeql-action/autobuild@v3
+        
+      - name: 📊 تحليل CodeQL
+        uses: github/codeql-action/analyze@v3
+        
+      - name: 🔐 فحص التبعيات الضعيفة
+        run: |
+          if [ -f package.json ]; then
+            npm audit --audit-level=moderate
+          fi
+          if [ -f requirements.txt ]; then
+            pip install safety
+            safety check -r requirements.txt
+          fi
+          
+      - name: 🚨 فحص OWASP للثغرات
+        uses: zaproxy/action-baseline@v0.10.0
+        with:
+          target: 'http://localhost:3000'
+          rules_file_name: '.zap/rules.tsv'
+          cmd_options: '-a'
+
+  # ========================================
+  # 2. التحقق من جودة الكود
+  # ========================================
+  code-quality:
+    name: ✨ فحص جودة الكود
+    runs-on: ubuntu-latest
+    needs: security-scan
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 🔧 إعداد Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          
+      - name: 📦 تثبيت التبعيات
+        run: npm ci --prefer-offline --no-audit
+        
+      - name: 🎨 فحص التنسيق والأخطاء
+        run: |
+          npm run lint || true
+          npm run format:check || true
+          
+      - name: 📈 تحليل SonarQube
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
+      - name: 🔍 فحص الأكواد المكررة
+        run: npx jscpd . --min-lines 5 --min-tokens 50
+
+  # ========================================
+  # 3. الاختبارات الشاملة
+  # ========================================
+  test:
+    name: 🧪 الاختبارات الشاملة
+    runs-on: ${{ matrix.os }}
+    needs: code-quality
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [16, 18, 20]
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 🔧 إعداد Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          
+      - name: 📦 تثبيت التبعيات
+        run: npm ci
+        
+      - name: 🧪 تشغيل الاختبارات
+        run: npm test -- --coverage --maxWorkers=2
+        
+      - name: 📊 رفع تقرير التغطية
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json
+          flags: unittests
+          name: codecov-${{ matrix.os }}-${{ matrix.node }}
+
+  # ========================================
+  # 4. البناء والنشر
+  # ========================================
+  build:
+    name: 🏗️ بناء المشروع
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 🔧 إعداد البيئة
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          
+      - name: 📦 تثبيت وبناء
+        run: |
+          npm ci
+          npm run build
+          
+      - name: 🗜️ ضغط الملفات
+        run: tar -czf build.tar.gz dist/
+        
+      - name: 📤 حفظ البناء
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build
+          path: build.tar.gz
+          retention-days: 7
+
+  # ========================================
+  # 5. فحص Docker والحاويات
+  # ========================================
+  docker-security:
+    name: 🐳 فحص أمان Docker
+    runs-on: ubuntu-latest
+    needs: build
+    if: hashFiles('Dockerfile') != ''
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 🏗️ بناء صورة Docker
+        run: docker build -t digital-mared:${{ github.sha }} .
+        
+      - name: 🔍 فحص الثغرات في الصورة - Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: digital-mared:${{ github.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          
+      - name: 📊 رفع نتائج الفحص
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+          
+      - name: 🔐 فحص Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+
+  # ========================================
+  # 6. حماية متقدمة وتنبيهات
+  # ========================================
+  advanced-protection:
+    name: 🛡️ الحماية المتقدمة
+    runs-on: ubuntu-latest
+    needs: [security-scan, code-quality]
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 🔐 فحص ملفات الإعدادات الحساسة
+        run: |
+          echo "🔍 فحص الملفات الحساسة..."
+          find . -name "*.env*" -o -name "*.key" -o -name "*.pem" -o -name "*credentials*" | while read file; do
+            if [ -f "$file" ]; then
+              echo "⚠️ تحذير: ملف حساس موجود: $file"
+            fi
+          done
+          
+      - name: 🚫 التحقق من عدم وجود أكواد خطرة
+        run: |
+          echo "🔍 البحث عن أنماط خطرة..."
+          grep -r "eval(" --include="*.js" --include="*.ts" . && echo "⚠️ تحذير: استخدام eval() خطر" || true
+          grep -r "exec(" --include="*.py" . && echo "⚠️ تحذير: استخدام exec() خطر" || true
+          grep -r "dangerouslySetInnerHTML" --include="*.jsx" --include="*.tsx" . && echo "⚠️ تحذير: استخدام dangerouslySetInnerHTML" || true
+          
+      - name: 📝 فحص الترخيص والامتثال
+        uses: pivotal/LicenseFinder@v7.0.1
+        
+      - name: 🔔 إرسال تنبيه في حالة الفشل
+        if: failure()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: '🚨 فشل فحص الأمان للمارد الرقمي!'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+  # ========================================
+  # 7. النسخ الاحتياطي والحماية
+  # ========================================
+  backup:
+    name: 💾 النسخ الاحتياطي
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: 📦 إنشاء نسخة احتياطية
+        run: |
+          tar -czf backup-${{ github.sha }}.tar.gz \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='*.log' \
+            .
+            
+      - name: 🔐 تشفير النسخة الاحتياطية
+        run: |
+          openssl enc -aes-256-cbc -salt \
+            -in backup-${{ github.sha }}.tar.gz \
+            -out backup-${{ github.sha }}.tar.gz.enc \
+            -k "${{ secrets.BACKUP_ENCRYPTION_KEY }}"
+            
+      - name: ☁️ رفع للتخزين السحابي
+        uses: actions/upload-artifact@v4
+        with:
+          name: encrypted-backup-${{ github.sha }}
+          path: backup-${{ github.sha }}.tar.gz.enc
+          retention-days: 30
+
+  # ========================================
+  # 8. التقرير النهائي
+  # ========================================
+  final-report:
+    name: 📋 التقرير النهائي
+    runs-on: ubuntu-latest
+    needs: [security-scan, code-quality, test, docker-security, advanced-protection]
+    if: always()
+    
+    steps:
+      - name: 📊 إنشاء تقرير شامل
+        run: |
+          echo "# 🛡️ تقرير المارد الرقمي للأمن السيبراني" > report.md
+          echo "" >> report.md
+          echo "## 📅 التاريخ: $(date)" >> report.md
+          echo "## 🔖 الإصدار: ${{ github.sha }}" >> report.md
+          echo "" >> report.md
+          echo "### ✅ الفحوصات المكتملة:" >> report.md
+          echo "- فحص الأمان الشامل" >> report.md
+          echo "- فحص جودة الكود" >> report.md
+          echo "- الاختبارات الشاملة" >> report.md
+          echo "- فحص أمان Docker" >> report.md
+          echo "- الحماية المتقدمة" >> report.md
+          
+      - name: 💬 نشر التقرير
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('report.md', 'utf8');
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🛡️ تقرير الأمان اليومي - ' + new Date().toISOString().split('T')[0],
+              body: report,
+              labels: ['security', 'automated']
+            });

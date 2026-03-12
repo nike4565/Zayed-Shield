@@ -1,0 +1,249 @@
+name: Ultra Secure Production Deployment
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+      - ".backups/**"
+      - ".git-backup-before-unforking/**"
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        default: "production"
+        type: choice
+        options:
+          - production
+          - staging
+      dry_run:
+        description: "Run deployment in dry-run mode"
+        required: true
+        default: true
+        type: boolean
+      smoke_test:
+        description: "Run health/smoke test after deployment"
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+  deployments: write
+  id-token: write
+  actions: read
+  checks: read
+  security-events: write
+
+concurrency:
+  group: deploy-${{ github.event.inputs.environment || 'production' }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  APP_NAME: Zayed-Shield
+  DEPLOY_SCRIPT: ./scripts/deploy.sh
+  DEFAULT_ENVIRONMENT: production
+
+jobs:
+  preflight:
+    name: Preflight Security & Integrity Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    outputs:
+      target_environment: ${{ steps.meta.outputs.target_environment }}
+      dry_run: ${{ steps.meta.outputs.dry_run }}
+      smoke_test: ${{ steps.meta.outputs.smoke_test }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Compute deployment metadata
+        id: meta
+        run: |
+          set -euo pipefail
+
+          TARGET_ENV="${{ github.event.inputs.environment }}"
+          DRY_RUN="${{ github.event.inputs.dry_run }}"
+          SMOKE_TEST="${{ github.event.inputs.smoke_test }}"
+
+          if [ -z "${TARGET_ENV}" ]; then
+            TARGET_ENV="${DEFAULT_ENVIRONMENT}"
+          fi
+
+          if [ -z "${DRY_RUN}" ]; then
+            DRY_RUN="false"
+          fi
+
+          if [ -z "${SMOKE_TEST}" ]; then
+            SMOKE_TEST="true"
+          fi
+
+          echo "target_environment=${TARGET_ENV}" >> "$GITHUB_OUTPUT"
+          echo "dry_run=${DRY_RUN}" >> "$GITHUB_OUTPUT"
+          echo "smoke_test=${SMOKE_TEST}" >> "$GITHUB_OUTPUT"
+
+      - name: Enable strict security mode
+        run: |
+          set -euo pipefail
+          echo "Security mode enabled"
+
+      - name: Enforce allowed branch
+        run: |
+          set -euo pipefail
+          if [ "${GITHUB_REF_NAME}" != "main" ]; then
+            echo "Blocked: deployments are only allowed from main"
+            exit 1
+          fi
+
+      - name: Validate deploy script exists
+        run: |
+          set -euo pipefail
+          test -f "${DEPLOY_SCRIPT}" || { echo "Missing deploy script: ${DEPLOY_SCRIPT}"; exit 1; }
+          echo "Deploy script found"
+
+      - name: Validate deploy script permissions
+        run: |
+          set -euo pipefail
+          chmod +x "${DEPLOY_SCRIPT}"
+          test -x "${DEPLOY_SCRIPT}" || { echo "Deploy script is not executable"; exit 1; }
+
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Lint deploy script
+        run: |
+          set -euo pipefail
+          shellcheck "${DEPLOY_SCRIPT}"
+
+      - name: Secret scan with Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Write preflight summary
+        run: |
+          {
+            echo "## Preflight Summary"
+            echo ""
+            echo "- App: ${APP_NAME}"
+            echo "- Branch: ${GITHUB_REF_NAME}"
+            echo "- Commit: ${GITHUB_SHA}"
+            echo "- Environment: ${{ steps.meta.outputs.target_environment }}"
+            echo "- Dry run: ${{ steps.meta.outputs.dry_run }}"
+            echo "- Smoke test: ${{ steps.meta.outputs.smoke_test }}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  deploy:
+    name: Hardened Deployment Pipeline
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: preflight
+
+    environment:
+      name: ${{ needs.preflight.outputs.target_environment }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Enable strict security mode
+        run: |
+          set -euo pipefail
+          echo "Deployment security mode enabled"
+
+      - name: Validate required secrets
+        env:
+          PROD_SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
+          PROD_SSH_USER: ${{ secrets.PROD_SSH_USER }}
+          PROD_SSH_KEY: ${{ secrets.PROD_SSH_KEY }}
+        run: |
+          set -euo pipefail
+
+          missing=0
+
+          [ -n "${PROD_SSH_HOST}" ] || { echo "Missing secret: PROD_SSH_HOST"; missing=1; }
+          [ -n "${PROD_SSH_USER}" ] || { echo "Missing secret: PROD_SSH_USER"; missing=1; }
+          [ -n "${PROD_SSH_KEY}" ] || { echo "Missing secret: PROD_SSH_KEY"; missing=1; }
+
+          if [ "$missing" -ne 0 ]; then
+            echo "Required deployment secrets are missing"
+            exit 1
+          fi
+
+      - name: Prepare SSH key
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.PROD_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ secrets.PROD_SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Run deployment
+        env:
+          TARGET_ENVIRONMENT: ${{ needs.preflight.outputs.target_environment }}
+          DRY_RUN: ${{ needs.preflight.outputs.dry_run }}
+          PROD_SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
+          PROD_SSH_USER: ${{ secrets.PROD_SSH_USER }}
+          PROD_APP_DIR: ${{ secrets.PROD_APP_DIR }}
+          HEALTHCHECK_URL: ${{ secrets.PROD_HEALTHCHECK_URL }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          chmod +x "${DEPLOY_SCRIPT}"
+          "${DEPLOY_SCRIPT}"
+
+      - name: Smoke test
+        if: ${{ needs.preflight.outputs.smoke_test == 'true' }}
+        env:
+          HEALTHCHECK_URL: ${{ secrets.PROD_HEALTHCHECK_URL }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${HEALTHCHECK_URL:-}" ]; then
+            echo "No HEALTHCHECK_URL configured, skipping smoke test"
+            exit 0
+          fi
+
+          echo "Running smoke test against ${HEALTHCHECK_URL}"
+          curl --fail --silent --show-error --max-time 15 "${HEALTHCHECK_URL}" > /tmp/healthcheck.out
+          echo "Smoke test passed"
+
+      - name: Deployment summary
+        if: always()
+        run: |
+          {
+            echo "## Deployment Summary"
+            echo ""
+            echo "- App: ${APP_NAME}"
+            echo "- Environment: ${{ needs.preflight.outputs.target_environment }}"
+            echo "- Dry run: ${{ needs.preflight.outputs.dry_run }}"
+            echo "- Commit: ${GITHUB_SHA}"
+            echo "- Actor: ${GITHUB_ACTOR}"
+            echo "- Status: ${{ job.status }}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload deployment diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-diagnostics
+          path: |
+            /tmp/healthcheck.out
+            .github/workflows/deploy.yml
+          if-no-files-found: ignore

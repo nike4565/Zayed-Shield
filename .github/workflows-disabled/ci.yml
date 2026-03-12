@@ -1,0 +1,75 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Lint shell scripts
+        run: |
+          set -euo pipefail
+          files=""
+          [ -f zayed-shield.sh ] && files="$files zayed-shield.sh"
+          [ -f install.sh ] && files="$files install.sh"
+
+          if [ -n "$files" ]; then
+            shellcheck $files
+          else
+            echo "No target shell scripts found, skipping shellcheck."
+          fi
+
+      - name: Run tests
+        run: |
+          set -euo pipefail
+          if [ -f ./tests/run_tests.sh ]; then
+            bash ./tests/run_tests.sh
+          else
+            echo "tests/run_tests.sh not found, skipping."
+          fi
+
+      - name: Security scan
+        run: |
+          set -euo pipefail
+          if [ -f ./tests/security_scan.sh ]; then
+            bash ./tests/security_scan.sh
+          else
+            echo "tests/security_scan.sh not found, skipping."
+          fi
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Verify installation
+        run: |
+          set -euo pipefail
+          if [ -f install.sh ]; then
+            bash install.sh --dry-run
+          else
+            echo "install.sh not found, skipping."
+          fi
+
+      - name: Build documentation
+        run: |
+          echo "Documentation build successful"

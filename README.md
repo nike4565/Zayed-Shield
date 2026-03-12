@@ -430,168 +430,6 @@ Date| Version| Changes
 https://github.com/user-attachments/assets/7a950965-3bf7-4a6a-a0bb-823e7d28be53
 
 ---
-
-## 🎯 عن المشروع | About The Project
-
-<div align="center">
-
-### ⚔️ درع زايد: حماية رقمية بروح إماراتية ⚔️
-
-</div>
-
-```yaml
-🛡️ المشروع:
-  الاسم: درع زايد (Zayed Shield)
-  النوع: منصة أمن سيبراني متكاملة
-  اللغة: العربية + English
-  الترخيص: Open Source (MIT)
-  الهدف: حماية العالم الرقمي العربي
-
-🎯 المهمة:
-  - حماية المستخدمين العرب من التهديدات السيبرانية
-  - توفير أدوات أمان مجانية بالعربية
-  - تعليم الأمن السيبراني للجميع
-  - بناء مجتمع أمني عربي قوي
-
-🌍 الرؤية:
-  "جعل الفضاء الرقمي العربي الأكثر أماناً في العالم"
-```
-
----
-
-## 🔥 المميزات الأسطورية | Epic Features
-
-<div align="center">
-
-### 💎 تقنيات على مستوى عالمي بروح عربية 💎
-
-</div>
-
-
-
-
-🛡️ CVE Records
-
----
-
-CVE-2024-3727
-
-"Status" (https://img.shields.io/badge/Status-Verified-red?style=flat-square)
-"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
-"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
-"MSRC" (https://img.shields.io/badge/MSRC-Coordinated-lightgrey?style=flat-square)
-
-Description
-A critical vulnerability identified and responsibly disclosed through coordinated communication with MSRC.
-The issue was validated and documented to support defensive improvements and strengthen overall security posture.
-
----
-
-CVE-2025-13952
-
-"Status" (https://img.shields.io/badge/Status-High%20Impact-orange?style=flat-square)
-"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
-"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
-"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
-
-Description
-A high-impact vulnerability discovered within a controlled research environment.
-The finding was reported through responsible disclosure channels and coordinated with MSRC to ensure proper remediation and risk mitigation.
-
----
-
-CVE-2025-6784
-
-"Status" (https://img.shields.io/badge/Status-Critical-red?style=flat-square)
-"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
-"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
-"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
-
-Description
-A critical vulnerability identified as part of ongoing national-level cybersecurity research.
-The vulnerability was responsibly disclosed and coordinated with MSRC to ensure proper handling, mitigation, and reinforcement of defensive security measures.
-
----
-
-CVE-2020-3187
-
-"Status" (https://img.shields.io/badge/Status-Critical-red?style=flat-square)
-"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
-"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
-"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
-
-Description
-A critical vulnerability documented as part of the research workflow.
-The issue was analyzed and handled through responsible disclosure to support defensive improvements.
-
----
-
-CVE-2026-21440
-
-"Status" (https://img.shields.io/badge/Status-High%20Severity-orange?style=flat-square)
-"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
-"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
-"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
-
-Description
-A high-severity vulnerability identified within a controlled research environment.
-The finding was responsibly disclosed to ensure proper remediation and strengthen system security.
-
----
-
-CVE-2023-36665
-
-"Status" (https://img.shields.io/badge/Status-Critical-red?style=flat-square)
-"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
-"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
-"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
-
-Description
-A critical vulnerability discovered and documented to enhance defensive cybersecurity measures.
-The issue was processed through responsible disclosure channels.
-
----
-
-CVE-2025-30066
-
-"Status" (https://img.shields.io/badge/Status-High%20Impact-orange?style=flat-square)
-"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
-"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
-"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
-
-Description
-A high-impact vulnerability identified during structured security testing.
-The finding was responsibly disclosed and coordinated to ensure proper mitigation.
-
----
-
-CVE-2025-63757
-
-"Status" (https://img.shields.io/badge/Status-Critical-red?style=flat-square)
-"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
-"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
-"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
-
-Description
-A critical vulnerability discovered as part of ongoing national-level cybersecurity research.
-The issue was responsibly disclosed to ensure secure handling and remediation.
-
----
-
-CVE-2025-13952
-
-"Status" (https://img.shields.io/badge/Status-High%20Impact-orange?style=flat-square)
-"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
-"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
-"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
-
-Description
-A high-impact vulnerability identified within a controlled testbed environment.
-The finding was responsibly disclosed and coordinated to ensure proper mitigation and strengthen defensive posture.
-
-
----
-
 ## 🌟 شهادات المستخدمين | User Testimonials
 
 <div align="center">
@@ -1150,7 +988,7 @@ chmod +x install.sh
 ║  🇦🇪 PROTECTING THE DIGITAL SOVEREIGNTY OF UAE  ║
 ║                                                   ║
 ╚═══════════════════════════════════════════════════╝
-```
+``
 
 ---
 
@@ -1294,7 +1132,7 @@ Built from scratch on a **low-end Samsung device** using Termux — proving that
 </td>
 <td width="40%" align="center">
 
-```
+``
     🛡️ SYSTEM STATUS 🛡️
 ┌─────────────────────────┐
 │  FIREWALL   ████ ACTIVE │
@@ -1305,7 +1143,7 @@ Built from scratch on a **low-end Samsung device** using Termux — proving that
 │  THREATS    ████ 0      │
 │             LOCKED ✅   │
 └─────────────────────────┘
-```
+`
 
 </td>
 </tr>
@@ -1382,7 +1220,7 @@ Real-time threat map, AI confidence meters, firewall grid, key rotation countdow
 
 ## 🏗️ Architecture
 
-```
+``
                          ╔══════════════════════════════════╗
                          ║   🛡️  ZAYED SHIELD  🛡️           ║
                          ║   ENTERPRISE SECURITY PLATFORM   ║
@@ -1421,11 +1259,11 @@ Real-time threat map, AI confidence meters, firewall grid, key rotation countdow
        │   📦 ARCHIVE · 860+ CVEs  │
        │  Immutable · GPG-Signed  │
        └──────────────────────────┘
-```
+`
 
 **7 Security Layers:**
 
-```
+``
 Layer 7 │ APPLICATION    │ Auth · Sessions · Input Validation
 Layer 6 │ PRESENTATION   │ TLS 1.3 · Certificate Pinning
 Layer 5 │ SESSION        │ Dynamic Keys · Token Binding
@@ -1433,7 +1271,7 @@ Layer 4 │ TRANSPORT      │ TCP/UDP Filter · Rate Limiting
 Layer 3 │ NETWORK        │ Geo-fence · DDoS · IP Filter
 Layer 2 │ DATA LINK      │ MAC Filter · ARP Protection
 Layer 1 │ PHYSICAL       │ HSM · Hardware Key Storage
-```
+`
 
 ---
 

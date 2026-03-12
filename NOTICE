@@ -1,26 +1,119 @@
-Zayed Shield Enterprise Security
-Copyright (c) 2025 Zayed Shield Project
+================================================================================
+ZAYED SHIELD ENTERPRISE SECURITY
+درع زايد — Intellectual Property Notice
+================================================================================
 
-This product includes software and research developed by the
-Zayed Shield security research initiative.
+Copyright (c) 2025 asrar-mared (Al-Muharib — المحارب الرقمي)
+All Rights Reserved.
 
-Primary Contributor:
-asrar-mared (Al-Muharib)
-Lead Security Researcher
+Project:    Zayed Shield Enterprise Security
+Repository: https://github.com/nike4565/Zayed-Shield
+Author:     asrar-mared
+Origin:     🇪🇬 Egypt · 🇦🇪 United Arab Emirates
+Dedicated:  To the UAE Vision 2050 — رؤية الإمارات 2050
 
-Third-party components may be included in this project.
-Each component retains its original license and attribution.
+================================================================================
+INTELLECTUAL PROPERTY
+حقوق الملكية الفكرية
+================================================================================
 
-All trademarks, product names, and company names or logos
-mentioned in this repository are the property of their respective owners.
+All source code, documentation, scripts, configurations, threat models,
+security advisories, remediation methodologies, and associated materials
+contained in this repository are the intellectual property of asrar-mared.
 
-This project may include references to public vulnerability databases
-including but not limited to:
+حميع رموز المصدر والوثائق والسكريبتات والنماذج والمواد المرتبطة بهذا
+المستودع هي ملكية فكرية خاصة بـ asrar-mared.
 
-• National Vulnerability Database (NVD)
-• GitHub Security Advisory Database
-• Common Vulnerabilities and Exposures (CVE)
+This includes but is not limited to:
 
-Those databases remain property of their respective organizations.
+  · The 9-stage automated vulnerability remediation script
+  · The Dynamic Key Gateway with 5-minute auto-rotation
+  · The AI-powered threat detection engine architecture
+  · The Smart Firewall rule engine design
+  · The Digital Forensics analysis methodology
+  · All 860+ security advisory contributions
+  · All CVE research and documentation
+  · The Zayed Shield branding and visual identity
 
-For full licensing information see the LICENSE file.
+================================================================================
+LICENSE
+================================================================================
+
+This project is licensed under the MIT License.
+See the LICENSE file in the root of this repository for full terms.
+
+Permission is granted, free of charge, to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, subject to the
+conditions in the LICENSE file.
+
+================================================================================
+THIRD-PARTY NOTICES
+إشعارات الطرف الثالث
+================================================================================
+
+This project uses or references the following third-party resources:
+
+  · GitHub Advisory Database (GHSA)
+    Copyright © GitHub, Inc. — https://github.com/advisories
+    License: CC-BY 4.0
+
+  · National Vulnerability Database (NVD / CVE)
+    Maintained by NIST — https://nvd.nist.gov
+    Public Domain
+
+  · MITRE ATT&CK® Framework
+    Copyright © MITRE Corporation — https://attack.mitre.org
+    License: Apache 2.0
+
+  · OWASP Top 10
+    Copyright © OWASP Foundation — https://owasp.org
+    License: CC-BY-SA 4.0
+
+  · npm Registry
+    Copyright © npm, Inc. — https://www.npmjs.com
+
+================================================================================
+SECURITY RESEARCH NOTICE
+إشعار البحث الأمني
+================================================================================
+
+All security research conducted under this project follows responsible
+disclosure principles:
+
+  · Vulnerabilities discovered are reported privately to maintainers first
+  · CVE IDs are requested through official channels
+  · GHSA advisories are submitted following GitHub's disclosure policy
+  · No vulnerability is publicly disclosed before a patch is available
+    (90-day maximum embargo)
+
+Security contact: nike494949@outlook.sa
+GPG Key: 8429D4C1ECAC3080BCB84AA0982159B70BA77EFD
+
+================================================================================
+GOVERNMENT DEDICATION
+إهداء وطني
+================================================================================
+
+This project is dedicated to the United Arab Emirates and its vision for
+a secure digital future. Conducted in honor of the founding principles of
+Sheikh Zayed bin Sultan Al Nahyan (may God have mercy on his soul):
+
+  "الرزق رزق الله، والمال مال الله، والفضل فضل الله"
+  — الشيخ زايد بن سلطان آل نهيان رحمه الله
+
+🇦🇪 For the UAE · من الإمارات وإليها 🇦🇪
+
+================================================================================
+CONTACT
+================================================================================
+
+Lead Maintainer : asrar-mared (Al-Muharib)
+Email           : nike494949@outlook.sa
+GitHub          : https://github.com/nike4565
+Project         : https://github.com/nike4565/Zayed-Shield
+
+================================================================================
+                    🛡️ ZAYED SHIELD ENTERPRISE SECURITY 🛡️
+                    درع زايد — UAE Cybersecurity Initiative
+                              © 2025 asrar-mared
+================================================================================

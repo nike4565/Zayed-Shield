@@ -15,31 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies if package.json exists
-        shell: bash
+      - name: Install Syft
         run: |
-          if [ -f package.json ]; then
-            npm install || npm install --package-lock-only || true
-          else
-            echo "No package.json found"
-          fi
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
 
       - name: Generate SBOM
-        shell: bash
         run: |
-          npm install -g @cyclonedx/cyclonedx-npm
-          if [ -f package.json ]; then
-            cyclonedx-npm --output-file sbom.json || echo "{}" > sbom.json
-          else
-            echo "{}" > sbom.json
-          fi
+          syft dir:. -o cyclonedx-json > sbom.json
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
         with:
           name: sbom
           path: sbom.json

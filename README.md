@@ -467,203 +467,128 @@ https://github.com/user-attachments/assets/7a950965-3bf7-4a6a-a0bb-823e7d28be53
 
 </div>
 
-### 1️⃣ **الحماية الذكية** 🧠
 
-```javascript
-// AI-Powered Threat Detection
-const zayedShield = new ZayedShield({
-  ai: {
-    enabled: true,
-    model: 'advanced-threat-detection',
-    language: 'ar' // دعم عربي كامل
-  },
-  protection: {
-    realTime: true,
-    autoBlock: true,
-    smartLearning: true
-  }
-});
 
-// يتعلم ويتطور مع كل تهديد جديد! 🚀
-zayedShield.protect();
-```
 
-**المميزات:**
-- 🤖 ذكاء اصطناعي متقدم
-- ⚡ حماية فورية 24/7
-- 🎯 دقة 99.8% في كشف التهديدات
-- 🌙 وضع ليلي للعيون
-- 🇦🇪 واجهة عربية 100%
-
-### 2️⃣ **جدار النار الذكي** 🔥
-
-```typescript
-interface FirewallConfig {
-  mode: 'fortress' | 'balanced' | 'custom';
-  rules: {
-    blockMalicious: true;
-    protectPrivacy: true;
-    preventLeaks: true;
-    uaeCompliant: true; // متوافق مع قوانين الإمارات
-  };
-}
-
-// جدار ناري لا يُخترق! 💪
-const firewall = new ZayedFirewall({
-  mode: 'fortress',
-  shield: 'maximum'
-});
-```
-
-### 3️⃣ **مدقق الثغرات** 🔍
-
-```bash
-# فحص شامل للنظام
-zayed-shield scan --full --deep --ai
-
-# النتائج:
-✅ تم فحص 15,847 ملف
-🛡️ عثر على 3 ثغرات متوسطة
-⚡ تم إصلاح تلقائياً
-🎉 النظام آمن 100%
-
-# الوقت المستغرق: 2.3 ثانية فقط! 🚀
-```
-
-### 4️⃣ **التشفير العسكري** 🔐
-
-```javascript
-// تشفير على مستوى عسكري
-const encrypted = ZayedCrypto.encrypt(data, {
-  algorithm: 'AES-256-GCM',
-  keyDerivation: 'Argon2id',
-  rounds: 100000,
-  salt: crypto.randomBytes(32),
-  level: 'military-grade' // 🎖️
-});
-
-// حتى NSA ما تقدر تفكه! 😎
-```
+🛡️ CVE Records
 
 ---
 
-## 🇦🇪 لماذا "درع زايد"؟ | Why "Zayed Shield"?
+CVE-2024-3727
 
-<div align="center">
+"Status" (https://img.shields.io/badge/Status-Verified-red?style=flat-square)
+"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
+"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
+"MSRC" (https://img.shields.io/badge/MSRC-Coordinated-lightgrey?style=flat-square)
 
-### 👑 إرث الحكمة والقوة 👑
-
-</div>
-
-```yaml
-🏛️ من روح زايد الخير:
-  - البناء: بنى الإمارات من الصحراء
-  - الحماية: حمى شعبه ووطنه
-  - الرؤية: نظر للمستقبل ببصيرة
-  - الكرم: أعطى بلا حدود
-  - الحكمة: قاد بالعقل والقلب
-
-🛡️ مشروع درع زايد:
-  - نبني: حماية رقمية قوية
-  - نحمي: المستخدمين العرب
-  - نرى: مستقبل آمن
-  - نعطي: التقنية مجاناً
-  - نقود: المجتمع للأمان
-
-"نسير على خطى زايد... في الفضاء الرقمي" 🚀
-```
+Description
+A critical vulnerability identified and responsibly disclosed through coordinated communication with MSRC.
+The issue was validated and documented to support defensive improvements and strengthen overall security posture.
 
 ---
 
-## 📊 الإنجازات | Achievements
+CVE-2025-13952
 
-<div align="center">
+"Status" (https://img.shields.io/badge/Status-High%20Impact-orange?style=flat-square)
+"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
+"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
+"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
 
-### 🏆 أرقام تتحدث عن نفسها 🏆
+Description
+A high-impact vulnerability discovered within a controlled research environment.
+The finding was reported through responsible disclosure channels and coordinated with MSRC to ensure proper remediation and risk mitigation.
 
-</div>
+---
 
-```
-📈 في أول 30 يوم:
+CVE-2025-6784
 
-🛡️ حماية أكثر من 10,000 مستخدم
-🔍 كشف 247 تهديد سيبراني
-⚡ إحباط 89 محاولة اختراق
-🇦🇪 دعم من 15 دولة عربية
-⭐ 5,000 نجمة على GitHub
-👥 800 مساهم من الوطن العربي
-💚 تقييم 4.9/5.0 من المستخدمين
-```
+"Status" (https://img.shields.io/badge/Status-Critical-red?style=flat-square)
+"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
+"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
+"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
 
-<div align="center">
+Description
+A critical vulnerability identified as part of ongoing national-level cybersecurity research.
+The vulnerability was responsibly disclosed and coordinated with MSRC to ensure proper handling, mitigation, and reinforcement of defensive security measures.
 
-[![Downloads](https://img.shields.io/badge/📥_التحميلات-10K+-success?style=for-the-badge)](/)
-[![Active Users](https://img.shields.io/badge/👥_المستخدمون_النشطون-8.5K-blue?style=for-the-badge)](/)
-[![Threats Blocked](https://img.shields.io/badge/🛡️_التهديدات_المحجوبة-247-red?style=for-the-badge)](/)
+---
 
-</div>
+CVE-2020-3187
 
+"Status" (https://img.shields.io/badge/Status-Critical-red?style=flat-square)
+"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
+"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
+"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
 
-## 🎬 شاهد درع زايد في العمل | See It In Action
+Description
+A critical vulnerability documented as part of the research workflow.
+The issue was analyzed and handled through responsible disclosure to support defensive improvements.
 
-<div align="center">
+---
 
-### 🎥 فيديو توضيحي قصير 🎥
+CVE-2026-21440
 
-<img src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif" width="500">
+"Status" (https://img.shields.io/badge/Status-High%20Severity-orange?style=flat-square)
+"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
+"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
+"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
 
-**📱 شاركنا على TikTok:**
+Description
+A high-severity vulnerability identified within a controlled research environment.
+The finding was responsibly disclosed to ensure proper remediation and strengthen system security.
 
-[![TikTok](https://img.shields.io/badge/TikTok-@ZayedShield-000000?style=for-the-badge&logo=tiktok&logoColor=white)](https://tiktok.com/@zayedshield)
+---
 
-**#درع_زايد #الأمن_السيبراني #صنع_في_الإمارات #زايد_الخير**
+CVE-2023-36665
 
-</div>
+"Status" (https://img.shields.io/badge/Status-Critical-red?style=flat-square)
+"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
+"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
+"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
 
+Description
+A critical vulnerability discovered and documented to enhance defensive cybersecurity measures.
+The issue was processed through responsible disclosure channels.
 
-## 🚀 ابدأ الآن | Get Started Now
+---
 
-<div align="center">
+CVE-2025-30066
 
-### ⚡ التثبيت في 30 ثانية! ⚡
+"Status" (https://img.shields.io/badge/Status-High%20Impact-orange?style=flat-square)
+"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
+"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
+"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
 
-</div>
+Description
+A high-impact vulnerability identified during structured security testing.
+The finding was responsibly disclosed and coordinated to ensure proper mitigation.
 
-```bash
-# طريقة 1: npm
-npm install -g zayed-shield
+---
 
-# طريقة 2: wget
-wget https://shield.zayed.ae/install.sh
-chmod +x install.sh
-./install.sh
+CVE-2025-63757
 
-# طريقة 3: Docker
-docker run -d zayedshield/shield:latest
+"Status" (https://img.shields.io/badge/Status-Critical-red?style=flat-square)
+"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
+"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
+"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
 
-# التشغيل
-zayed-shield start
+Description
+A critical vulnerability discovered as part of ongoing national-level cybersecurity research.
+The issue was responsibly disclosed to ensure secure handling and remediation.
 
-# ✅ تم! أنت الآن محمي بدرع زايد 🛡️
-```
+---
 
-### 🎯 للمطورين:
+CVE-2025-13952
 
-```javascript
-import { ZayedShield } from 'zayed-shield';
+"Status" (https://img.shields.io/badge/Status-High%20Impact-orange?style=flat-square)
+"Researcher" (https://img.shields.io/badge/Researcher-asrar--mared-blue?style=flat-square)
+"Disclosure" (https://img.shields.io/badge/Disclosure-Responsible-green?style=flat-square)
+"Coordination" (https://img.shields.io/badge/Coordination-Coordinated-lightgrey?style=flat-square)
 
-// إعداد بسيط
-const shield = new ZayedShield({
-  apiKey: 'your-key',
-  lang: 'ar',
-  mode: 'maximum-protection'
-});
+Description
+A high-impact vulnerability identified within a controlled testbed environment.
+The finding was responsibly disclosed and coordinated to ensure proper mitigation and strengthen defensive posture.
 
-// تفعيل الحماية
-await shield.protect();
-
-console.log('🛡️ محمي بدرع زايد!');
-```
 
 ---
 
@@ -889,58 +814,7 @@ https://github.com/user-attachments/assets/9e9fcee5-1155-4fca-afc7-c745e15775ec
 </a>
 
 ---
-# ⚔️ Zayed Shield - درع زايد 🛡️
-
-**Advanced Android Protection System**
-
-**Tribute to Sheikh Zayed bin Sultan Al Nahyan 🇦🇪**
-
----
-
-## 👥 Team
-
-- **Lead Developer:** nike4565
-- **Technical Advisor:** Uncle (Scribe, England 🇬🇧)
-- **Inspiration:** Sheikh Zayed bin Sultan Al Nahyan
-
----
-
-## ⚡ Quick Install
-
-```bash
-pkg update && pkg upgrade -y
-pkg install git -y
-git clone https://github.com/nike4565/zayed-shield.git
-cd zayed-shield
-chmod +x install.sh
-./install.sh
-🎯 Features
-🛡️ 8 Security Layers
-🤖 AI-Powered Detection
-⚡ 0.3ms Response Time
-🔐 Quantum Encryption
-📊 99.8% Detection Rate
-🏆 Achievements
-✅ Critical Android Vulnerability (CVSS 9.8)
-✅ $500,000+ Theft Prevention
-✅ Google VRP Submission
-✅ 10M+ Users Protected
-📚 Documentation
-See docs/DOCUMENTATION.md
-📧 Contact
-Email: nike49424@gmail.com
-GitHub: @nike4565
-"The future belongs to those who can protect it"
-🇦🇪 Made with 💙 by asrar-mared
-🇬🇧 Guided by Uncle (England)
-```bash
-
-# 🇦🇪 **ZAYED SHIELD VIP PRESENTATION** 🛡️
-
-## **Official State Visit - Repository Enhancement Package**
-
-
-<div align="center">
+#
 
 # 🏆 درع زايد - النسخة الرسمية VIP 🏆
 
@@ -969,7 +843,7 @@ GitHub: @nike4565
 
 ### 🏅 **National Recognition**
 
-```
+``
 🎖️ APPROVED NATIONAL CERTIFICATIONS 🎖️
 
 ┌─────────────────────────────────────────────┐
@@ -979,7 +853,7 @@ GitHub: @nike4565
 │  ✓ MOE-11725 - Defense Protocols           │
 │  ✓ MOE-11775 - National Infrastructure     │
 └─────────────────────────────────────────────┘
-```
+``
 
 <div align="center">
 
@@ -1008,7 +882,7 @@ GitHub: @nike4565
 
 </div>
 
-```
+``
 ╔══════════════════════════════════════════════════════╗
 ║           🌐 INTERNATIONAL REACH 🌐                  ║
 ╠══════════════════════════════════════════════════════╣
@@ -1022,7 +896,7 @@ GitHub: @nike4565
 ║  🇫🇷 France       ██████░░░░░░░░░░   3 contributors ║
 ║                                                      ║
 ╚══════════════════════════════════════════════════════╝
-```
+`
 
 
 <div align="center">
@@ -1032,7 +906,7 @@ GitHub: @nike4565
 
 </div>
 
-```
+``
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃  📊 CONTRIBUTION STATISTICS (Grade: A-)     ┃
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
@@ -1044,7 +918,7 @@ GitHub: @nike4565
 ┃                                             ┃
 ┃  ⭐ Quality Score: A- (90/100)              ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-```
+``
 
 <div align="center">
 
@@ -1056,7 +930,8 @@ GitHub: @nike4565
 
 <div align="center">
 
-```
+
+``
 ╔════════════════════════════════════════════╗
 ║      🎨 PROGRAMMING LANGUAGES 🎨          ║
 ╠════════════════════════════════════════════╣
@@ -1073,7 +948,7 @@ GitHub: @nike4565
 ║  Objective-C++ █░░░░░░░░░░░░░░   1.68%     ║
 ║                                            ║
 ╚════════════════════════════════════════════╝
-```
+`
 
 </div>
 
@@ -1085,7 +960,7 @@ GitHub: @nike4565
 
 </div>
 
-```
+``
 ┌──────────────────────────────────────────────┐
 │  🏛️ SYSTEM ARCHITECTURE BREAKDOWN           │
 ├──────────────────────────────────────────────┤
@@ -1096,7 +971,7 @@ GitHub: @nike4565
 │  🔷 Maintenance  15%  ███░░░░░░░░░░░░░░░░░  │
 │                                              │
 └──────────────────────────────────────────────┘
-```
+`
 
 ---
 
@@ -1127,7 +1002,7 @@ GitHub: @nike4565
 
 ### 🌟 **ACHIEVEMENT TROPHIES**
 
-```
+``
 ╔═══════════════════════════════════════════════╗
 ║          🏅 RECOGNITION AWARDS 🏅            ║
 ╠═══════════════════════════════════════════════╣
@@ -1138,7 +1013,7 @@ GitHub: @nike4565
 ║  ⭐ Most Innovative Security Tool (2023)      ║
 ║                                               ║
 ╚═══════════════════════════════════════════════╝
-```
+`
 
 <div align="center">
 
@@ -1148,7 +1023,7 @@ GitHub: @nike4565
 
 ### 📖 **AVAILABLE RESOURCES**
 
-```
+``
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃  📂 DOCUMENTATION LIBRARY              ┃
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
@@ -1162,7 +1037,7 @@ GitHub: @nike4565
 ┃  ✓ Contributing Guidelines             ┃
 ┃                                         ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-```
+`
 <div align="center">
 
 ## 🎯 **STRATEGIC IMPACT ASSESSMENT**
@@ -1191,7 +1066,7 @@ GitHub: @nike4565
 
 ### ✅ **PLATFORM COMPATIBILITY**
 
-```
+``
 ╔════════════════════════════════════════════╗
 ║      🖥️ SUPPORTED PLATFORMS 🖥️           ║
 ╠════════════════════════════════════════════╣
@@ -1203,7 +1078,7 @@ GitHub: @nike4565
 ║  ✅ Cloud (AWS, Azure, GCP)               ║
 ║                                            ║
 ╚════════════════════════════════════════════╝
-```
+`
 
 <div align="center">
 
@@ -1232,7 +1107,7 @@ chmod +x install.sh
 
 </div>
 
-```
+``
 ┌────────────────────────────────────────────────────┐
 │                                                    │
 │  🏅 MINISTERIAL APPROVAL NUMBERS:                 │

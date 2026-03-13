@@ -1455,3 +1455,10 @@ Lead Security Researcher · CVE Analyst · Founder
 | [👥 MAINTAINERS.md](./MAINTAINERS.md) | Core team · security team · GPG keys |
 | [📜 NOTICE](./NOTICE) | Copyright · IP notice 
 
+
+
+## 🎬 Project Media & Evidence
+
+See the full media archive here:
+
+[Proof and Media](docs/PROOF_AND_MEDIA.md)

@@ -721,42 +721,7 @@ https://github.com/user-attachments/assets/9e9fcee5-1155-4fca-afc7-c745e15775ec
 </div>
 
 ``
-╔══════════════════════════════════════════════════════╗
-║           🌐 INTERNATIONAL REACH 🌐                  ║
-╠══════════════════════════════════════════════════════╣
-║                                                      ║
-║  🇪🇬 Egypt        ████████████████░  15 contributors ║
-║  🇸🇦 Saudi Arabia ████████████░░░░  12 contributors ║
-║  🇦🇪 UAE          ███████░░░░░░░░░   8 contributors ║
-║  🇺🇸 United States ████████░░░░░░░   5 contributors ║
-║  🇩🇪 Germany      ██████░░░░░░░░░░   3 contributors ║
-║  🇬🇧 United Kingdom ██████░░░░░░░░   3 contributors ║
-║  🇫🇷 France       ██████░░░░░░░░░░   3 contributors ║
-║                                                      ║
-╚══════════════════════════════════════════════════════╝
-`
 
-
-<div align="center">
-
-
-### 📈 **DEVELOPMENT ACTIVITY EXCELLENCE**
-
-</div>
-
-``
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃  📊 CONTRIBUTION STATISTICS (Grade: A-)     ┃
-┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-┃                                             ┃
-┃  🔹 Total Commits:     684                  ┃
-┃  🔹 Active Issues:      90                  ┃
-┃  🔹 Pull Requests:      81                  ┃
-┃  🔹 Code Reviews:       38                  ┃
-┃                                             ┃
-┃  ⭐ Quality Score: A- (90/100)              ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-``
 
 <div align="center">
 

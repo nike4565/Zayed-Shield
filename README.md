@@ -788,21 +788,6 @@ https://github.com/user-attachments/assets/9e9fcee5-1155-4fca-afc7-c745e15775ec
 
 ## 🏗️ **INFRASTRUCTURE CATEGORIES**
 
-</div>
-
-``
-┌──────────────────────────────────────────────┐
-│  🏛️ SYSTEM ARCHITECTURE BREAKDOWN           │
-├──────────────────────────────────────────────┤
-│                                              │
-│  🔷 Code         40%  ████████░░░░░░░░░░░░  │
-│  🔷 Documentation 25%  █████░░░░░░░░░░░░░░  │
-│  🔷 Build Tools  20%  ████░░░░░░░░░░░░░░░░  │
-│  🔷 Maintenance  15%  ███░░░░░░░░░░░░░░░░░  │
-│                                              │
-└──────────────────────────────────────────────┘
-`
-
 ---
 
 <div align="center">
@@ -1122,26 +1107,21 @@ Built from scratch on a **low-end Samsung device** using Termux — proving that
 > *— الشيخ زايد بن سلطان آل نهيان*
 
 </td>
-<td width="40%" align="center">
-
-``
-    🛡️ SYSTEM STATUS 🛡️
-┌─────────────────────────┐
-│  FIREWALL   ████ ACTIVE │
-│  AI ENGINE  ████ 99.7%  │
-│  KEY GATE   ████ 5 MIN  │
-│  FORENSICS  ████ READY  │
-│  ARCHIVE    ████ 860+   │
-│  THREATS    ████ 0      │
-│             LOCKED ✅   │
-└─────────────────────────┘
-`
+<td width="40%" align="center
 
 </td>
 </tr>
 </table>
 
 ---
+## 🛠️ Technologies Used
+
+<p align="center">
+
+<img src="https://skillicons.dev/icons?i=python,js,react,nodejs,docker,mongodb,redis,aws,tensorflow,kubernetes,linux,github" />
+
+</p>
+
 
 ## 🚀 Features
 

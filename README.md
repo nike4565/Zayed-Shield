@@ -188,6 +188,15 @@ To build a community-driven digital defense ecosystem that unites developers and
 
 ---
 
+## 🔐 Security & Verification
+
+### 📡 Monitoring Records
+
+| Record ID | Comment |
+|-----------|---------|
+| `3893174677` | vulnerable-package reinstalled with latest stable version ✅ |
+| `3893174754` | Scheduled monitoring & auto-update activated every 6 hours ✅ |
+
 🚀 Phase I — Foundation (Q1 2025) ✅
 
 Period: January – March 2025
@@ -206,6 +215,24 @@ Key Achievements
 - 👥 Establishment of the initial community core
 
 ---
+
+## 📬 Security Contact
+
+| Field | Value |
+|------|------|
+| Email | nike49424@proton.me |
+| PGP Key ID | 90F1FDD57577ACD7 |
+| Subkey | FE64231C61194CEF |
+
+Security researchers can contact the maintainer using the encrypted email above.
+
+## 🌐 DNS Security
+
+Example DNSSEC key generation command:
+
+``bash
+dnssec-keygen -a RSASHA256 -b 2048 -f KSK example.com
+
 
 🔧 Phase II — Development (Q2 2025) 🟡
 
@@ -504,19 +531,6 @@ https://github.com/user-attachments/assets/7a950965-3bf7-4a6a-a0bb-823e7d28be53
 
 </div>
 
-```yaml
-💚 كيف تساهم:
-  1. فورك المشروع على GitHub
-  2. أضف ميزة أو أصلح bug
-  3. افتح Pull Request
-  4. احصل على شارة "محارب درع زايد" 🎖️
-
-🎖️ مكافآت المساهمين:
-  - شهادة رسمية باسمك
-  - شارات حصرية
-  - ذكر في الموقع الرسمي
-  - دعوة لفريق التطوير الأساسي
-```
 
 ---
 
@@ -918,54 +932,9 @@ chmod +x install.sh
 
 <div align="center">
 
-## 🎖️ **OFFICIAL BADGES & CERTIFICATIONS** 🎖️
-
-</div>
-
-``
-┌────────────────────────────────────────────────────┐
-│                                                    │
-│  🏅 MINISTERIAL APPROVAL NUMBERS:                 │
-│                                                    │
-│  ├─ MOE-11718 ✓ Security Architecture            │
-│  ├─ MOE-11725 ✓ Defense Protocol Standards       │
-│  └─ MOE-11775 ✓ National Infrastructure Ready    │
-│                                                    │
-│  🔒 SECURITY CERTIFICATIONS:                      │
-│                                                    │
-│  ├─ CVE-2025-67847 ✓ SECURED                     │
-│  ├─ CVE-2025-13952 ✓ PATCHED                     │
-│  └─ GHSA-pwf7-47c3-mfhx ✓ RESOLVED               │
-│                                                    │
-└────────────────────────────────────────────────────┘
-```
-
 ---
 
 <div align="center">
-
-## 🌟 **MINISTERIAL PRESENTATION SUMMARY** 🌟
-
-</div>
-
-### 📋 **EXECUTIVE HIGHLIGHTS**
-
-```
-╔═══════════════════════════════════════════════════╗
-║                                                   ║
-║  ✓ Presidential-level cybersecurity initiative   ║
-║  ✓ Multi-national collaboration (7 countries)    ║
-║  ✓ 684+ professional commits                     ║
-║  ✓ Grade A- code quality (90/100)                ║
-║  ✓ 3 Critical CVEs eliminated                    ║
-║  ✓ 40% pure security code implementation         ║
-║  ✓ Award-winning community project               ║
-║  ✓ Full ministerial certification                ║
-║                                                   ║
-║  🇦🇪 PROTECTING THE DIGITAL SOVEREIGNTY OF UAE  ║
-║                                                   ║
-╚═══════════════════════════════════════════════════╝
-``
 
 ---
 

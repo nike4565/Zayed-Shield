@@ -1,6 +1,6 @@
-# 🛡️ ARCHITECTURE.md — درع زايد | Zayed Shield Enterprise Security
+# 🛡️ ARCHITECTURE.md — درع زايد Zayed Shield Enterprise Security
 
-> **Version:** 3.0.0 · **Author:** asrar-mared (Al-Muharib) · **UAE © 2025**
+> **Version:** 3.0.0 · **Author:** asrar-mared (Al-Muharib) **UAE © 2025**
 > 
 > هذا الملف يشرح البنية الكاملة للمشروع — المكونات، المجلدات، تدفق التشغيل، وكيف تعمل كل طبقة.
 
@@ -202,7 +202,7 @@ archive/
 
 ---
 
-### 📁 `/scripts/` — سكريبتات الأتمتة
+### 📁 /scripts/ — سكريبتات الأتمتة
 
 ```
 scripts/
@@ -386,7 +386,7 @@ Analyst: CVE-2017-18892, CVE-2025-13952, CVE-2025-67847
 
 **🛡️ درع زايد — للإمارات ومن الإمارات 🇦🇪**
 
-`ZAYED SHIELD ENTERPRISE SECURITY · ARCHITECTURE v3.0.0`
+ZAYED SHIELD ENTERPRISE SECURITY · ARCHITECTURE v3.0.0`
 
 *حقوق الملكية الفكرية محفوظة · All IP Rights Reserved · UAE © 2025*
 

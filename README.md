@@ -167,14 +167,14 @@ The official release image features:
 ## 🔏 Signature Verification
 This release is cryptographically signed using Sigstore bundle format:
 
-🗺️ GENESIS LINK ROADMAP
+## 🗺️ GENESIS LINK ROADMAP
 
 «Symbolic Roadmap – Zayed Shield 🇦🇪
 Building the future step by step, signed by every digital warrior.»
 
 ---
 
-🎯 Vision
+## 🎯 Vision
 
 To build a community-driven digital defense ecosystem that unites developers and security researchers within a single collaborative platform dedicated to:
 
@@ -234,7 +234,32 @@ Example DNSSEC key generation command:
 dnssec-keygen -a RSASHA256 -b 2048 -f KSK example.com
 
 
-🔧 Phase II — Development (Q2 2025) 🟡
+---
+
+# 4️⃣ قسم Infrastructure
+``markdown
+## 🏗️ Security Infrastructure
+
+The platform integrates multiple security components:
+
+- Threat monitoring engine
+- Vulnerability intelligence tracking
+- Automated dependency remediation
+- Real-time alerting system
+- Continuous security monitoring
+
+
+## 🚨 Threat Monitoring
+
+The platform continuously monitors:
+
+- CVE vulnerability feeds
+- GitHub security advisories
+- dependency vulnerabilities
+- automated remediation status
+- security alert correlations
+
+## 🔧 Phase II — Development (Q2 2025) 🟡
 
 Period: April – June 2025
 Status: 🟡 In Progress
@@ -254,7 +279,7 @@ Objectives
 
 ---
 
-🤖 Phase III — Artificial Intelligence Integration (Q3 2025) ⚪
+## 🤖 Phase III — Artificial Intelligence Integration (Q3 2025) ⚪
 
 Period: July – September 2025
 Status: ⚪ Planned
@@ -273,7 +298,7 @@ Objectives
 
 ---
 
-🌍 Phase IV — Global Expansion (Q4 2025) ⚪
+## 🌍 Phase IV — Global Expansion (Q4 2025) ⚪
 
 Period: October – December 2025
 Status: ⚪ Planned
@@ -293,7 +318,7 @@ Objectives
 
 ---
 
-🎯 Long-Term Goals (2026+)
+## 🎯 Long-Term Goals (2026+)
 
 2026
 
@@ -309,7 +334,7 @@ Objectives
 
 ---
 
-📊 Interactive Gantt Timeline
+## 📊 Interactive Gantt Timeline
 
 gantt
 title Genesis Link 2025 Roadmap
@@ -340,7 +365,7 @@ Annual Conference     :2025-11-15, 2025-12-15
 
 ---
 
-🎖️ How to Contribute
+## 🎖️ How to Contribute
 
 For Developers
 
@@ -366,7 +391,7 @@ For Community Members
 
 ---
 
-📈 Key Performance Indicators (KPIs)
+## 📈 Key Performance Indicators (KPIs)
 
 Metric| Q1| Q2| Q3| Q4
 Contributors| ✅ 25| 🎯 100| 🎯 300| 🎯 1000

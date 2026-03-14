@@ -56,3 +56,9 @@ generate-jwt.sh
 private-key.pem
 
 security-bot.sh
+# Private keys
+*.pem
+*.key
+*.private
+*-private.asc
+archive/keys/*

@@ -54,3 +54,5 @@ sbom.json
 # Local GitHub App files
 generate-jwt.sh
 private-key.pem
+
+security-bot.sh

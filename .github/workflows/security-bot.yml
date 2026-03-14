@@ -1,0 +1,107 @@
+name: Zayed Shield Security Bot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  security-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Write GitHub App private key
+        run: |
+          printf '%s' "${{ secrets.GH_APP_PRIVATE_KEY }}" > private-key.pem
+          chmod 600 private-key.pem
+
+      - name: Update SECURITY_BOT.md locally
+        run: |
+          cat > SECURITY_BOT.md <<'EOF'
+          # Security Bot
+          Updated automatically by GitHub Actions via Zayed Shield Security App.
+          EOF
+
+      - name: Generate JWT
+        id: jwt
+        env:
+          GH_APP_CLIENT_ID: ${{ secrets.GH_APP_CLIENT_ID }}
+        run: |
+          python - <<'PY' > jwt.txt
+          import time
+          import jwt
+
+          client_id = "${{ secrets.GH_APP_CLIENT_ID }}"
+          with open("private-key.pem", "rb") as f:
+              signing_key = f.read()
+
+          payload = {
+              "iat": int(time.time()) - 60,
+              "exp": int(time.time()) + 600,
+              "iss": client_id,
+          }
+
+          token = jwt.encode(payload, signing_key, algorithm="RS256")
+          print(token)
+          PY
+
+      - name: Create installation token
+        id: install_token
+        env:
+          GH_APP_INSTALLATION_ID: ${{ secrets.GH_APP_INSTALLATION_ID }}
+        run: |
+          JWT="$(cat jwt.txt)"
+          INSTALL_TOKEN="$(curl -s -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $JWT" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            https://api.github.com/app/installations/${GH_APP_INSTALLATION_ID}/access_tokens \
+            | python -c "import sys,json; print(json.load(sys.stdin)['token'])")"
+
+          echo "token=$INSTALL_TOKEN" >> "$GITHUB_OUTPUT"
+
+      - name: Update SECURITY_BOT.md via API
+        env:
+          INSTALL_TOKEN: ${{ steps.install_token.outputs.token }}
+        run: |
+          CONTENT="$(base64 -w 0 SECURITY_BOT.md 2>/dev/null || base64 SECURITY_BOT.md | tr -d '\n')"
+
+          SHA="$(curl -s \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $INSTALL_TOKEN" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            https://api.github.com/repos/nike4565/Zayed-Shield/contents/SECURITY_BOT.md \
+            | python -c "import sys,json; print(json.load(sys.stdin).get('sha',''))")"
+
+          if [ -n "$SHA" ]; then
+            curl -s -X PUT \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer $INSTALL_TOKEN" \
+              -H "Content-Type: application/json" \
+              -H "X-GitHub-Api-Version: 2026-03-10" \
+              https://api.github.com/repos/nike4565/Zayed-Shield/contents/SECURITY_BOT.md \
+              -d "{
+                \"message\":\"docs: update security bot file via actions\",
+                \"content\":\"$CONTENT\",
+                \"sha\":\"$SHA\"
+              }"
+          else
+            curl -s -X PUT \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer $INSTALL_TOKEN" \
+              -H "Content-Type: application/json" \
+              -H "X-GitHub-Api-Version: 2026-03-10" \
+              https://api.github.com/repos/nike4565/Zayed-Shield/

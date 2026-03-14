@@ -24,13 +24,13 @@ jobs:
         language: [ 'javascript' ]
 
     steps:
-    - name: Checkout
+    - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-        languages: ${{ matrix.language }}
+        languages: javascript
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v3

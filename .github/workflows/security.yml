@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/dependency-review-action@v4
+      - uses: actions/checkout@v5
+      - uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: high
 
@@ -34,7 +34,7 @@ jobs:
     name: 🔐 Secrets Scan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: TruffleHog Scan
@@ -53,11 +53,11 @@ jobs:
       matrix:
         language: [ 'javascript-typescript', 'python', 'actions' ]
     steps:
-      - uses: actions/checkout@v4
-      - uses: github/codeql-action/init@v3
+      - uses: actions/checkout@v5
+      - uses: github/codeql-action/init@v5
         with:
           languages: ${{ matrix.language }}
-      - uses: github/codeql-action/autobuild@v3
-      - uses: github/codeql-action/analyze@v3
+      - uses: github/codeql-action/autobuild@v5
+      - uses: github/codeql-action/analyze@v5
         with:
           category: "/language:${{ matrix.language }}"

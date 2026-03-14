@@ -1,5 +1,7 @@
+name: CodeQL config
+
 paths-ignore:
   - archive/**
-  - logs/**
   - runtime/**
+  - logs/**
   - reports/**

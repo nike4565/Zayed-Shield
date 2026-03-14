@@ -66,3 +66,5 @@ archive/keys/*
 *.key
 *-private.asc
 archive/keys/*
+archive/keys/*private*
+*.asc

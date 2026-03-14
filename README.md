@@ -233,8 +233,6 @@ Example DNSSEC key generation command:
 ``bash
 dnssec-keygen -a RSASHA256 -b 2048 -f KSK example.com
 
-# 4️⃣ قسم Infrastructure
-``markdown
 ## 🏗️ Security Infrastructure
 
 The platform integrates multiple security components:

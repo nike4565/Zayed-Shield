@@ -62,3 +62,7 @@ security-bot.sh
 *.private
 *-private.asc
 archive/keys/*
+*.pem
+*.key
+*-private.asc
+archive/keys/*

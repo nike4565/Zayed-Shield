@@ -1,5 +1,5 @@
 # 🛡️ Zayed Shield — Unified Security Workflow
-# Replaces all fragmented workflows with one clean pipeline
+# درع زايد — ملف الأمان الموحد والنظيف
 
 name: 🛡️ Zayed Shield Security
 
@@ -29,7 +29,7 @@ jobs:
         with:
           fail-on-severity: high
 
-  # ── 2. Secret Scanning
+  # ── 2. Secrets Scan
   secrets-scan:
     name: 🔐 Secrets Scan
     runs-on: ubuntu-latest

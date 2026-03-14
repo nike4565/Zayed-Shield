@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -30,10 +30,13 @@ jobs:
 
       - name: Update SECURITY_BOT.md locally
         run: |
-          cat > SECURITY_BOT.md <<'EOF'
+          cat > SECURITY_BOT.md <<'MD'
           # Security Bot
           Updated automatically by GitHub Actions via Zayed Shield Security App.
-          EOF
+          MD
+
+      - name: Install Python dependencies
+        run: pip install PyJWT cryptography
 
       - name: Generate JWT
         run: |
@@ -58,53 +61,21 @@ jobs:
       - name: Create installation token
         id: install_token
         run: |
-          JWT="$(cat jwt.txt)"
-          INSTALL_TOKEN="$(curl -s -X POST \
+          JWT=$(cat jwt.txt)
+          INSTALL_ID=$(curl -s -H "Authorization: Bearer $JWT" \
             -H "Accept: application/vnd.github+json" \
+            https://api.github.com/app/installations | jq -r '.[0].id')
+          TOKEN=$(curl -s -X POST \
             -H "Authorization: Bearer $JWT" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            https://api.github.com/app/installations/${{ secrets.GH_APP_INSTALLATION_ID }}/access_tokens \
-            | python -c "import sys,json; print(json.load(sys.stdin)['token'])")"
-
-          echo "token=$INSTALL_TOKEN" >> "$GITHUB_OUTPUT"
-
-      - name: Update SECURITY_BOT.md via API
-        env:
-          INSTALL_TOKEN: ${{ steps.install_token.outputs.token }}
-        run: |
-          CONTENT="$(base64 -w 0 SECURITY_BOT.md 2>/dev/null || base64 SECURITY_BOT.md | tr -d '\n')"
-
-          SHA="$(curl -s \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $INSTALL_TOKEN" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            https://api.github.com/repos/nike4565/Zayed-Shield/contents/SECURITY_BOT.md \
-            | python -c "import sys,json; print(json.load(sys.stdin).get('sha',''))")"
+            https://api.github.com/app/installations/$INSTALL_ID/access_tokens \
+            | jq -r '.token')
+          echo "token=$TOKEN" >> $GITHUB_OUTPUT
 
-          if [ -n "$SHA" ]; then
-            curl -s -X PUT \
-              -H "Accept: application/vnd.github+json" \
-              -H "Authorization: Bearer $INSTALL_TOKEN" \
-              -H "Content-Type: application/json" \
-              -H "X-GitHub-Api-Version: 2026-03-10" \
-              https://api.github.com/repos/nike4565/Zayed-Shield/contents/SECURITY_BOT.md \
-              -d "{
-                \"message\":\"docs: update security bot file\",
-                \"content\":\"$CONTENT\",
-                \"sha\":\"$SHA\"
-              }"
-          else
-            curl -s -X PUT \
-              -H "Accept: application/vnd.github+json" \
-              -H "Authorization: Bearer $INSTALL_TOKEN" \
-              -H "Content-Type: application/json" \
-              -H "X-GitHub-Api-Version: 2026-03-10" \
-              https://api.github.com/repos/nike4565/Zayed-Shield/contents/SECURITY_BOT.md \
-              -d "{
-                \"message\":\"docs: create security bot file\",
-                \"content\":\"$CONTENT\"
-              }"
-          fi
-
-      - name: Cleanup
-        run: rm -f private-key.pem jwt.txt
+      - name: Commit and push
+        run: |
+          git config user.name "Zayed Shield Bot"
+          git config user.email "bot@zayed-shield.dev"
+          git add SECURITY_BOT.md
+          git diff --cached --quiet || git commit -m "bot: security status update [skip ci]"
+          git push https://x-access-token:${{ steps.install_token.outputs.token }}@github.com/${{ github.repository }}.git

@@ -950,18 +950,7 @@ cd Zayed-Shield
 chmod +x install.sh
 ./install.sh
 
-# ✅ System will be secured in under 60 seconds
-```
-
----
-
-<div align="center">
-
----
-
-<div align="center">
-
----
+ ✅ System will be secured in under 60 seconds
 
 <div align="center">
 

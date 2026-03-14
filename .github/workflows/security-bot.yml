@@ -36,9 +36,6 @@ jobs:
           EOF
 
       - name: Generate JWT
-        id: jwt
-        env:
-          GH_APP_CLIENT_ID: ${{ secrets.GH_APP_CLIENT_ID }}
         run: |
           python - <<'PY' > jwt.txt
           import time
@@ -60,15 +57,13 @@ jobs:
 
       - name: Create installation token
         id: install_token
-        env:
-          GH_APP_INSTALLATION_ID: ${{ secrets.GH_APP_INSTALLATION_ID }}
         run: |
           JWT="$(cat jwt.txt)"
           INSTALL_TOKEN="$(curl -s -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $JWT" \
             -H "X-GitHub-Api-Version: 2026-03-10" \
-            https://api.github.com/app/installations/${GH_APP_INSTALLATION_ID}/access_tokens \
+            https://api.github.com/app/installations/${{ secrets.GH_APP_INSTALLATION_ID }}/access_tokens \
             | python -c "import sys,json; print(json.load(sys.stdin)['token'])")"
 
           echo "token=$INSTALL_TOKEN" >> "$GITHUB_OUTPUT"
@@ -94,7 +89,7 @@ jobs:
               -H "X-GitHub-Api-Version: 2026-03-10" \
               https://api.github.com/repos/nike4565/Zayed-Shield/contents/SECURITY_BOT.md \
               -d "{
-                \"message\":\"docs: update security bot file via actions\",
+                \"message\":\"docs: update security bot file\",
                 \"content\":\"$CONTENT\",
                 \"sha\":\"$SHA\"
               }"
@@ -104,4 +99,12 @@ jobs:
               -H "Authorization: Bearer $INSTALL_TOKEN" \
               -H "Content-Type: application/json" \
               -H "X-GitHub-Api-Version: 2026-03-10" \
-              https://api.github.com/repos/nike4565/Zayed-Shield/
+              https://api.github.com/repos/nike4565/Zayed-Shield/contents/SECURITY_BOT.md \
+              -d "{
+                \"message\":\"docs: create security bot file\",
+                \"content\":\"$CONTENT\"
+              }"
+          fi
+
+      - name: Cleanup
+        run: rm -f private-key.pem jwt.txt

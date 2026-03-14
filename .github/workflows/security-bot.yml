@@ -35,6 +35,9 @@ jobs:
           Updated automatically by GitHub Actions via Zayed Shield Security App.
           EOF
 
+      - name: Install Python dependencies
+        run: pip install PyJWT cryptography
+
       - name: Generate JWT
         run: |
           python - <<'PY' > jwt.txt
